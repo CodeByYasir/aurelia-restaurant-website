@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html class="light scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Reservations | Aurelia</title>
+    <meta name="description" content="Reserve your table at Aurelia — South Asian-Continental fusion fine dining."/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-surface": "#e8e4dc",
+                        "secondary": "#c9a84c",
+                        "on-secondary": "#1a1400",
+                        "on-secondary-container": "#c9a84c",
+                        "secondary-container": "#3a2c00",
+                        "outline": "#504935",
+                        "outline-variant": "#2c2920",
+                        "surface": "#111110",
+                        "surface-container": "#191917",
+                        "surface-container-low": "#151513",
+                        "surface-container-high": "#1f1f1c",
+                        "surface-container-highest": "#262623",
+                        "on-background": "#e8e4dc",
+                        "inverse-surface": "#e8e4dc",
+                        "primary": "#908878",
+                        "background": "#0d0d0b",
+                    },
+                    fontFamily: { "headline": ["Noto Serif", "serif"], "body": ["Manrope", "sans-serif"], "label": ["Manrope", "sans-serif"] },
+                    borderRadius: { "DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s cubic-bezier(0.25,0.1,0.25,1), transform 0.8s cubic-bezier(0.25,0.1,0.25,1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+        body::after { content: ''; position: fixed; inset: 0; z-index: 9998; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E"); opacity: 0.025; mix-blend-mode: overlay; }
+        input, select, textarea { color-scheme: dark; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-secondary/20 selection:text-secondary">
+
+<a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-secondary focus:text-white focus:px-4 focus:py-2 focus:text-xs focus:tracking-widest focus:uppercase">Skip to Content</a>
+<nav id="site-header" class="fixed top-0 w-full z-50 bg-[#0d0d0b]/90 backdrop-blur-md transition-all duration-500">
+    <div class="flex justify-between items-center px-6 md:px-12 py-6 w-full max-w-screen-2xl mx-auto">
+        <div class="hidden lg:flex gap-8 items-center">
+            <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="menu.html">Menu</a>
+            <a class="font-headline tracking-widest uppercase text-xs text-secondary border-b border-secondary/40 pb-0.5" href="reservations.html">Reservations</a>
+            <a class="font-headline tracking-widests uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="private-dining.html">Private Dining</a>
+        </div>
+        <a class="text-3xl font-light font-headline tracking-tight text-on-surface" href="index.html">Aurelia</a>
+        <div class="flex gap-8 items-center">
+            <div class="hidden lg:flex gap-8 items-center">
+                <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="about.html">About</a>
+                <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="gallery.html">Gallery</a>
+                <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="contact.html">Contact</a>
+            </div>
+            <a href="reservations.html" class="bg-secondary text-on-secondary px-6 py-2.5 text-[10px] uppercase tracking-[0.2em] font-bold transition-all duration-500 hover:bg-secondary/90">Book a Table</a>
+        </div>
+    </div>
+</nav>
+
+<main id="main-content">
+
+    <!-- Section 1: Page Header -->
+    <section class="pt-40 pb-20 px-6 md:px-12 bg-background">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="reveal">
+                <h1 class="font-headline text-5xl md:text-7xl font-light text-on-surface">Reserve Your Table</h1>
+                <p class="font-headline italic text-lg text-primary mt-6">Secure your evening at Aurelia.</p>
+                <div class="w-24 h-[1px] bg-secondary/40 mt-8"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Booking Form -->
+    <section class="py-24 px-6 md:px-12 bg-background">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-24">
+
+                <!-- Left Column: The Reservation Form -->
+                <div class="reveal">
+                    <p class="font-label text-xs uppercase tracking-widest text-secondary font-bold mb-8">Make a Reservation</p>
+
+                    <form id="reservation-form" novalidate>
+                        <div class="space-y-6">
+
+                            <!-- Full Name -->
+                            <div>
+                                <label class="block font-label text-xs uppercase tracking-widest text-primary/70 mb-2" for="full-name">Full Name <span class="text-secondary">*</span></label>
+                                <input
+                                    type="text"
+                                    id="full-name"
+                                    name="full-name"
+                                    required
+                                    class="border-b border-outline-variant/40 bg-transparent py-3 focus:outline-none focus:border-secondary transition-colors w-full font-body text-sm text-on-surface placeholder:text-primary/40"
+                                    placeholder="Your full name"
+                                />
+                            </div>
+
+                            <!-- Email Address -->
+                            <div>
+                                <label class="block font-label text-xs uppercase tracking-widest text-primary/70 mb-2" for="email">Email Address <span class="text-secondary">*</span></label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    required
+                                    class="border-b border-outline-variant/40 bg-transparent py-3 focus:outline-none focus:border-secondary transition-colors w-full font-body text-sm text-on-surface placeholder:text-primary/40"
+                                    placeholder="your@email.com"
+                                />
+                            </div>
+
+                            <!-- Phone Number -->
+                            <div>
+                                <label class="block font-label text-xs uppercase tracking-widest text-primary/70 mb-2" for="phone">Phone Number</label>
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    name="phone"
+                                    class="border-b border-outline-variant/40 bg-transparent py-3 focus:outline-none focus:border-secondary transition-colors w-full font-body text-sm text-on-surface placeholder:text-primary/40"
+                                    placeholder="+1 (000) 000-0000"
+                                />
+                            </div>
+
+                            <!-- Preferred Date -->
+                            <div>
+                                <label class="block font-label text-xs uppercase tracking-widest text-primary/70 mb-2" for="date">Preferred Date <span class="text-secondary">*</span></label>
+                                <input
+                                    type="date"
+                                    id="date"
+                                    name="date"
+                                    required
+                                    class="border-b border-outline-variant/40 bg-transparent py-3 focus:outline-none focus:border-secondary transition-colors w-full font-body text-sm text-on-surface"
+                                />
+                            </div>
+
+                            <!-- Time -->
+                            <div>
+                                <label class="block font-label text-xs uppercase tracking-widest text-primary/70 mb-2" for="time">Preferred Time <span class="text-secondary">*</span></label>
+                                <select
+                                    id="time"
+                                    name="time"
+                                    required
+                                    class="border-b border-outline-variant/40 bg-transparent py-3 focus:outline-none focus:border-secondary transition-colors w-full font-body text-sm text-on-surface"
+                                >
+                                    <option value="" disabled selected>Select a time</option>
+                                    <optgroup label="Lunch">
+                                        <option value="12:00">12:00</option>
+                                        <option value="12:30">12:30</option>
+                                        <option value="13:00">13:00</option>
+                                        <option value="13:30">13:30</option>
+                                        <option value="14:00">14:00</option>
+                                        <option value="14:30">14:30</option>
+                                    </optgroup>
+                                    <optgroup label="Dinner">
+                                        <option value="18:00">18:00</option>
+                                        <option value="18:30">18:30</option>
+                                        <option value="19:00">19:00</option>
+                                        <option value="19:30">19:30</option>
+                                        <option value="20:00">20:00</option>
+                                        <option value="20:30">20:30</option>
+                                        <option value="21:00">21:00</option>
+                                        <option value="21:30">21:30</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+
+                            <!-- Guests -->
+                            <div>
+                                <label class="block font-label text-xs uppercase tracking-widest text-primary/70 mb-2" for="guests">Number of Guests <span class="text-secondary">*</span></label>
+                                <select
+                                    id="guests"
+                                    name="guests"
+                                    required
+                                    class="border-b border-outline-variant/40 bg-transparent py-3 focus:outline-none focus:border-secondary transition-colors w-full font-body text-sm text-on-surface"
+                                >
+                                    <option value="" disabled selected>Select guests</option>
+                                    <option value="1">1 Guest</option>
+                                    <option value="2">2 Guests</option>
+                                    <option value="3">3 Guests</option>
+                                    <option value="4">4 Guests</option>
+                                    <option value="5">5 Guests</option>
+                                    <option value="6">6 Guests</option>
+                                    <option value="7">7 Guests</option>
+                                    <option value="8">8 Guests</option>
+                                    <option value="9">9 Guests</option>
+                                    <option value="10+">10+ (Large Party)</option>
+                                </select>
+                            </div>
+
+                            <!-- Occasion -->
+                            <div>
+                                <label class="block font-label text-xs uppercase tracking-widest text-primary/70 mb-2" for="occasion">Occasion <span class="text-primary/40 normal-case tracking-normal">(optional)</span></label>
+                                <select
+                                    id="occasion"
+                                    name="occasion"
+                                    class="border-b border-outline-variant/40 bg-transparent py-3 focus:outline-none focus:border-secondary transition-colors w-full font-body text-sm text-on-surface"
+                                >
+                                    <option value="">None</option>
+                                    <option value="birthday">Birthday</option>
+                                    <option value="anniversary">Anniversary</option>
+                                    <option value="business">Business Dinner</option>
+                                    <option value="celebration">Celebration</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <!-- Special Requests -->
+                            <div>
+                                <label class="block font-label text-xs uppercase tracking-widest text-primary/70 mb-2" for="requests">Special Requests <span class="text-primary/40 normal-case tracking-normal">(optional)</span></label>
+                                <textarea
+                                    id="requests"
+                                    name="requests"
+                                    rows="3"
+                                    class="border-b border-outline-variant/40 bg-transparent py-3 focus:outline-none focus:border-secondary transition-colors w-full font-body text-sm text-on-surface placeholder:text-primary/40 resize-none"
+                                    placeholder="Dietary requirements, allergies, seating preferences…"
+                                ></textarea>
+                            </div>
+
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button
+                            type="submit"
+                            class="mt-10 w-full bg-secondary text-on-secondary py-4 text-xs uppercase tracking-[0.3em] font-bold hover:bg-secondary/90 transition-all duration-500"
+                        >
+                            Confirm Reservation
+                        </button>
+
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="res-success" style="display:none;" class="py-12 text-center">
+                        <span class="material-symbols-outlined text-secondary text-4xl mb-6 block">check_circle</span>
+                        <p class="font-headline italic text-2xl text-secondary leading-relaxed">Your reservation is confirmed. We look forward to welcoming you.</p>
+                        <p class="font-body text-sm text-primary mt-4">A confirmation has been sent to your email.</p>
+                    </div>
+
+                    <!-- Large Party Note -->
+                    <p class="font-body text-xs text-primary/60 mt-8">
+                        For parties of 10 or more, please enquire about our
+                        <a href="private-dining.html" class="text-secondary border-b border-secondary/30 pb-0.5 hover:border-secondary transition-colors duration-300">Private Dining</a>
+                        arrangements.
+                    </p>
+                </div>
+
+                <!-- Right Column: Information -->
+                <div class="reveal space-y-0">
+
+                    <!-- Hours -->
+                    <div class="pb-10 border-b border-outline-variant/20">
+                        <p class="font-label text-xs uppercase tracking-widest text-secondary font-bold mb-6">Hours</p>
+                        <div class="space-y-4">
+                            <div>
+                                <p class="font-label text-xs uppercase tracking-widest text-on-surface font-bold mb-3">Lunch</p>
+                                <div class="grid grid-cols-2 gap-x-6 font-body text-sm text-primary">
+                                    <span>Mon – Sun</span>
+                                    <span>12:00 – 15:00</span>
+                                </div>
+                            </div>
+                            <div class="pt-2">
+                                <p class="font-label text-xs uppercase tracking-widest text-on-surface font-bold mb-3">Dinner</p>
+                                <div class="space-y-2 font-body text-sm text-primary">
+                                    <div class="grid grid-cols-2 gap-x-6">
+                                        <span>Mon – Thu</span>
+                                        <span>18:00 – 22:00</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-x-6">
+                                        <span>Fri – Sat</span>
+                                        <span>18:00 – 23:00</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-x-6">
+                                        <span>Sunday</span>
+                                        <span>17:30 – 21:30</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cancellation Policy -->
+                    <div class="py-10 border-b border-outline-variant/20">
+                        <p class="font-label text-xs uppercase tracking-widest text-secondary font-bold mb-4">Cancellation Policy</p>
+                        <p class="font-body text-sm text-primary leading-relaxed">We kindly ask for 24 hours' notice for cancellations. For parties of six or more, a credit card guarantee is required at the time of booking.</p>
+                    </div>
+
+                    <!-- Dress Code -->
+                    <div class="py-10 border-b border-outline-variant/20">
+                        <p class="font-label text-xs uppercase tracking-widest text-secondary font-bold mb-4">Dress Code</p>
+                        <p class="font-body text-sm text-primary leading-relaxed">Smart casual. We ask that guests dress to honour the occasion.</p>
+                    </div>
+
+                    <!-- Parking & Transit -->
+                    <div class="py-10 border-b border-outline-variant/20">
+                        <p class="font-label text-xs uppercase tracking-widest text-secondary font-bold mb-4">Parking &amp; Transit</p>
+                        <p class="font-body text-sm text-primary leading-relaxed">Valet parking available on request. Nearest subway: 57th Street–7th Ave (N/Q/R/W).</p>
+                    </div>
+
+                    <!-- Locale Notes -->
+                    <div class="pt-2">
+                        <p class="service-charge-uk hidden text-xs text-primary/60 mt-4 italic">A discretionary service charge of 12.5% will be added to your bill.</p>
+                        <p class="gratuity-us text-xs text-primary/60 mt-4 italic">Gratuity not included.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Experience Preview -->
+    <section class="py-24 px-6 md:px-12 bg-surface-container-low">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+
+                <!-- The Menu -->
+                <div class="reveal text-center">
+                    <span class="material-symbols-outlined text-secondary text-3xl mb-4 block">restaurant_menu</span>
+                    <h3 class="font-headline text-xl text-on-surface mb-3">The Menu</h3>
+                    <p class="font-body text-sm text-primary leading-relaxed mb-4">Explore seasonal dishes crafted from ingredients sourced across two continents.</p>
+                    <a href="menu.html" class="text-secondary text-xs uppercase tracking-widest font-bold border-b border-secondary/30 pb-0.5 hover:border-secondary transition-colors duration-300">View the Menu</a>
+                </div>
+
+                <!-- The Wine List -->
+                <div class="reveal text-center">
+                    <span class="material-symbols-outlined text-secondary text-3xl mb-4 block">wine_bar</span>
+                    <h3 class="font-headline text-xl text-on-surface mb-3">The Wine List</h3>
+                    <p class="font-body text-sm text-primary leading-relaxed mb-4">Our sommelier curates a cellar of over 200 labels to complement every dish.</p>
+                    <a href="menu.html#drinks" class="text-secondary text-xs uppercase tracking-widest font-bold border-b border-secondary/30 pb-0.5 hover:border-secondary transition-colors duration-300">Explore Drinks</a>
+                </div>
+
+                <!-- Private Dining -->
+                <div class="reveal text-center">
+                    <span class="material-symbols-outlined text-secondary text-3xl mb-4 block">event_seat</span>
+                    <h3 class="font-headline text-xl text-on-surface mb-3">Private Dining</h3>
+                    <p class="font-body text-sm text-primary leading-relaxed mb-4">Host your gathering in one of our intimate private rooms, from 8 to 40 guests.</p>
+                    <a href="private-dining.html" class="text-secondary text-xs uppercase tracking-widest font-bold border-b border-secondary/30 pb-0.5 hover:border-secondary transition-colors duration-300">Enquire Now</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="bg-surface-container-low w-full relative border-t border-outline-variant/10 pb-24 lg:pb-0">
+    <div class="w-full px-6 md:px-12 py-20 grid grid-cols-1 md:grid-cols-4 gap-12 max-w-screen-2xl mx-auto">
+        <div class="space-y-6">
+            <a class="text-2xl font-headline font-light text-on-surface" href="index.html">Aurelia</a>
+            <p class="font-body font-light tracking-wide text-sm text-primary max-w-xs">South Asian-Continental fusion. A dialogue between two culinary worlds, served in an atmosphere of understated luxury.</p>
+        </div>
+        <div class="space-y-6">
+            <h4 class="font-label text-xs font-bold uppercase tracking-widest text-on-surface">Explore</h4>
+            <div class="flex flex-col gap-4">
+                <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="menu.html">Menu</a>
+                <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="about.html">About</a>
+                <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="private-dining.html">Private Dining</a>
+                <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="gallery.html">Gallery</a>
+                <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="gift-cards.html">Gift Cards</a>
+                <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="press.html">Press</a>
+                <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="contact.html">Contact</a>
+            </div>
+        </div>
+        <div class="md:col-span-2 space-y-6">
+            <h4 class="font-label text-xs font-bold uppercase tracking-widest text-on-surface">The Journal</h4>
+            <p class="font-body font-light tracking-wide text-sm text-primary">Seasonal menus, chef's notes, and invitations to the table. Once a month.</p>
+            <form class="flex border-b border-outline-variant/40 pb-2" onsubmit="event.preventDefault(); this.querySelector('input').value=''; alert('Thank you for subscribing.');">
+                <input class="bg-transparent border-none focus:ring-0 w-full font-body font-light text-sm text-on-surface placeholder:text-primary/50" placeholder="Your email address" type="email" required/>
+                <button type="submit" class="text-secondary font-label text-xs uppercase tracking-widest font-bold hover:text-on-secondary-container transition-colors">Join</button>
+            </form>
+            <div class="pt-4">
+                <span class="font-label text-xs font-bold uppercase tracking-widest text-on-surface block mb-3">Locale</span>
+                <div class="text-xs tracking-widest text-primary">
+                    <button class="locale-btn hover:text-secondary transition-colors font-bold" data-locale="us">US</button>
+                    <span class="mx-1">|</span>
+                    <button class="locale-btn hover:text-secondary transition-colors" data-locale="uk">UK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="max-w-screen-2xl mx-auto px-6 md:px-12 pb-12 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="font-body font-light tracking-wide text-xs text-primary opacity-60">&copy; 2026 Aurelia Restaurant. All Rights Reserved.</p>
+        <div class="flex flex-wrap justify-center gap-6 font-body font-light text-xs text-primary/60">
+            <a class="hover:text-secondary transition-colors" href="privacy.html">Privacy</a>
+            <a class="hover:text-secondary transition-colors" href="terms.html">Terms</a>
+            <a class="hover:text-secondary transition-colors" href="allergens.html">Allergens</a>
+            <a class="hover:text-secondary transition-colors" href="cookies.html">Cookies</a>
+            <a class="hover:text-secondary transition-colors" href="accessibility.html">Accessibility</a>
+        </div>
+    </div>
+</footer>
+
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-6 pb-safe pt-3 lg:hidden bg-background/90 backdrop-blur-xl shadow-[0_-4px_20px_rgba(28,28,25,0.04)] border-t border-outline-variant/20">
+    <a class="flex flex-col items-center justify-center text-primary" href="menu.html">
+        <span class="material-symbols-outlined">restaurant_menu</span>
+        <span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Menu</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-secondary scale-110" href="reservations.html">
+        <span class="material-symbols-outlined">calendar_today</span>
+        <span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Reserve</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-primary" href="gallery.html">
+        <span class="material-symbols-outlined">collections</span>
+        <span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Gallery</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-primary" href="contact.html">
+        <span class="material-symbols-outlined">location_on</span>
+        <span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Contact</span>
+    </a>
+</nav>
+
+<script src="js/main.js"></script>
+<script>
+    const form = document.getElementById('reservation-form');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            form.style.display = 'none';
+            document.getElementById('res-success').style.display = 'block';
+        });
+    }
+
+    // Reveal on scroll
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => observer.observe(el));
+
+    // Locale switcher
+    const localeBtns = document.querySelectorAll('.locale-btn');
+    const serviceChargeUK = document.querySelectorAll('.service-charge-uk');
+    const gratuityUS = document.querySelectorAll('.gratuity-us');
+
+    localeBtns.forEach(btn => {
+        btn.addEventListener('click', function () {
+            const locale = this.dataset.locale;
+            localeBtns.forEach(b => b.classList.remove('font-bold', 'text-secondary'));
+            this.classList.add('font-bold', 'text-secondary');
+
+            if (locale === 'uk') {
+                serviceChargeUK.forEach(el => el.classList.remove('hidden'));
+                gratuityUS.forEach(el => el.classList.add('hidden'));
+            } else {
+                serviceChargeUK.forEach(el => el.classList.add('hidden'));
+                gratuityUS.forEach(el => el.classList.remove('hidden'));
+            }
+        });
+    });
+
+    // Nav scroll effect
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 40) {
+            header.classList.add('shadow-sm');
+        } else {
+            header.classList.remove('shadow-sm');
+        }
+    });
+</script>
+</body>
+</html>

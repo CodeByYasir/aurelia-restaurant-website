@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html class="light scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Gallery | Aurelia</title>
+    <meta name="description" content="A visual journey through Aurelia — the food, the atmosphere, the craft."/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-surface": "#e8e4dc",
+                        "secondary": "#c9a84c",
+                        "on-secondary": "#1a1400",
+                        "on-secondary-container": "#c9a84c",
+                        "secondary-container": "#3a2c00",
+                        "outline": "#504935",
+                        "outline-variant": "#2c2920",
+                        "surface": "#111110",
+                        "surface-container": "#191917",
+                        "surface-container-low": "#151513",
+                        "surface-container-high": "#1f1f1c",
+                        "surface-container-highest": "#262623",
+                        "on-background": "#e8e4dc",
+                        "inverse-surface": "#e8e4dc",
+                        "primary": "#908878",
+                        "background": "#0d0d0b",
+                    },
+                    fontFamily: { "headline": ["Noto Serif", "serif"], "body": ["Manrope", "sans-serif"], "label": ["Manrope", "sans-serif"] },
+                    borderRadius: { "DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s cubic-bezier(0.25,0.1,0.25,1), transform 0.8s cubic-bezier(0.25,0.1,0.25,1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+        body::after { content: ''; position: fixed; inset: 0; z-index: 9998; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E"); opacity: 0.025; mix-blend-mode: overlay; }
+        input, select, textarea { color-scheme: dark; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-secondary/20 selection:text-secondary">
+
+    <!-- Skip Link -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-secondary focus:text-white focus:px-4 focus:py-2 focus:text-xs focus:tracking-widest focus:uppercase">Skip to Content</a>
+
+    <!-- Navigation -->
+    <nav id="site-header" class="fixed top-0 w-full z-50 bg-[#0d0d0b]/90 backdrop-blur-md transition-all duration-500">
+        <div class="flex justify-between items-center px-6 md:px-12 py-6 w-full max-w-screen-2xl mx-auto">
+            <div class="hidden lg:flex gap-8 items-center">
+                <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="menu.html">Menu</a>
+                <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="reservations.html">Reservations</a>
+                <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="private-dining.html">Private Dining</a>
+            </div>
+            <a class="text-3xl font-light font-headline tracking-tight text-on-surface" href="index.html">Aurelia</a>
+            <div class="flex gap-8 items-center">
+                <div class="hidden lg:flex gap-8 items-center">
+                    <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="about.html">About</a>
+                    <a class="font-headline tracking-widest uppercase text-xs text-secondary border-b border-secondary/40 pb-0.5" href="gallery.html">Gallery</a>
+                    <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="contact.html">Contact</a>
+                </div>
+                <a href="reservations.html" class="bg-secondary text-on-secondary px-6 py-2.5 text-[10px] uppercase tracking-[0.2em] font-bold transition-all duration-500 hover:bg-secondary/90">Book a Table</a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content">
+
+        <!-- Section 1: Page Header -->
+        <section class="pt-40 pb-16 bg-background">
+            <div class="max-w-screen-2xl mx-auto px-6 md:px-12 text-center reveal">
+                <h1 class="font-headline text-5xl md:text-7xl font-light text-on-surface mb-4">The Gallery</h1>
+                <p class="font-headline italic text-primary text-lg md:text-xl mb-2">Food. Atmosphere. Craft.</p>
+            </div>
+        </section>
+
+        <!-- Section 2: Filter Tabs -->
+        <div class="sticky top-[73px] z-40 bg-background/95 backdrop-blur-sm border-b border-outline-variant/20 py-4">
+            <div class="max-w-screen-2xl mx-auto px-6 md:px-12 flex gap-6 md:gap-10 justify-center flex-wrap">
+                <button class="gallery-filter-btn font-label text-xs uppercase tracking-widest font-bold pb-2 border-b-2 transition-colors text-secondary border-secondary" data-filter="all">All</button>
+                <button class="gallery-filter-btn font-label text-xs uppercase tracking-widest font-bold pb-2 border-b-2 transition-colors text-stone-400 border-transparent hover:text-on-surface" data-filter="food">Food</button>
+                <button class="gallery-filter-btn font-label text-xs uppercase tracking-widest font-bold pb-2 border-b-2 transition-colors text-stone-400 border-transparent hover:text-on-surface" data-filter="interiors">Interiors</button>
+                <button class="gallery-filter-btn font-label text-xs uppercase tracking-widest font-bold pb-2 border-b-2 transition-colors text-stone-400 border-transparent hover:text-on-surface" data-filter="events">Events</button>
+                <button class="gallery-filter-btn font-label text-xs uppercase tracking-widest font-bold pb-2 border-b-2 transition-colors text-stone-400 border-transparent hover:text-on-surface" data-filter="details">Details</button>
+            </div>
+        </div>
+
+        <!-- Section 3: Gallery Grid -->
+        <section class="py-16 px-4 md:px-8 bg-background">
+            <div style="columns: 2; column-gap: 8px;" class="md:columns-3 lg:columns-4">
+
+                <!-- Item 1: Food -->
+                <div class="gallery-item break-inside-avoid mb-2 overflow-hidden block relative group" data-category="food">
+                    <div class="aspect-[4/5]">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaiqPm3Q31towKF6L2ZJe4_ZQ7ayxy9XokGkPyPv_vZa8wxBmX2UyZnjWF1TbvFLJU-NsxAx1SWbdx9fGN68jsjS2P_uyRQeEh4E_mJ_VOnmlWwpFMxH_SdHuHAltnzp1JIvF1SO7LPBFNV2yBdDKHRAzGc973U1FrcOJgmVZLOxX4twV8Zd1SSKBmRHfWdm2uaJ0Ckq3vOwPd9y4paA1Mk802Q5Mfj64fOJ5BejSW-qb6Nb1oSRCI9eeEI0aeKw0Xc5Ofjdl0d0M" alt="A beautifully plated signature dish at Aurelia" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"></div>
+                </div>
+
+                <!-- Item 2: Interiors -->
+                <div class="gallery-item break-inside-avoid mb-2 overflow-hidden block relative group" data-category="interiors">
+                    <div class="aspect-square">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBM9ntBhD6X1EejfTyVOrseavusD-1Vy1vcHuN2zUmc73DDawuazxVynFd03yPv6HjPrP36vacRZFeShtbtN04tnpYsdE4-PUkh9OZLOz-hzJ_lf3IvG4Y1aXbGkGaMQQLmOTsiMMV6K1YiauNEDbDecjZ2l-zV-_o-SmYCzwYtXdKwga3EPYxIeHYr8SMwrKKogbE5eK5LMecHOxcuyKDhQ5Os0LVStwuEQeFolqieQh9casjZBiOMB7uAgaTOe1cKeuOO0HEP47o" alt="The dining room interior of Aurelia" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"></div>
+                </div>
+
+                <!-- Item 3: Food -->
+                <div class="gallery-item break-inside-avoid mb-2 overflow-hidden block relative group" data-category="food">
+                    <div class="aspect-[3/2]">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaN14r497iX7lv2K9MERWWY8czLCGbG4-deKFVWNfmFz4XpUIuYAKLMCYGWhbiYsOGR7O6nFx9jRSJBFGnYF5KnQV2_xADxKDgLr7k5uZsYE4xxCziedHKuZ2jDa0QoqmzSx4aD8lL8mvG4Lk6rWPeBAAg4xlD8rPLJvT07zCUZj7GgcEvvjM0_F_k1dlqiVlfCrI-DulejRewLszDqm_jpjQ7uDmuvgqi65rVo5bIGCGmrVTAUUaABAsaYtBegiNKJH8WBt9YsZ0" alt="Chef's seasonal tasting course presented with precision" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"></div>
+                </div>
+
+                <!-- Item 4: Events -->
+                <div class="gallery-item break-inside-avoid mb-2 overflow-hidden block relative group" data-category="events">
+                    <div class="aspect-[4/5]">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNfrb3T8MCdBojF96mpU8tgzYiWV6pcMlOd8L3s17qHZudRILSwlYAR16KTys-nlCq6jBQ4Lpf5-PBAoESWWiSVy38mmgcbP7lK9loUXqOv-2-VbuQPFgICoR-OTgaN1QtQdTCwpYJA47X8ld7Kd_732wGecLucTL6dZ7FhCMlnbR2G2DCxXwKLxYVITEBTVzX2YL1aSXmlF7aOc3RzdK5ZmGrNiCeyH7yFthEeYmqZGgdQXhySoElH79TMX0P2rUaJbYpIQ7GB20" alt="A private dining event in the Aurelia salon" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"></div>
+                </div>
+
+                <!-- Item 5: Details -->
+                <div class="gallery-item break-inside-avoid mb-2 overflow-hidden block relative group" data-category="details">
+                    <div class="aspect-square">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqME71H3Q9PfTnDH5y1Z1vpjMB0zbCxM_Xkn5hbj2MvrJo54SFhHGLME6xHwRn08FVQ6Xn7LK9M0hP57MnCoEL7tY5L_BLDxw8pNpofdVnuobn6J1Ml_zojqKWcxd8NkIT5kjbi-9wjX2thnTM99rgSsoJAGupMQ9c3I0d56MZRyTDhiXyldcandc3YWtCSBUfjRu27ctmgSTZCt4JIxJLDMKCpCsNYXc_TFEHkJ7PD3IozNyLrzO_GHdVnLNJLxFTgXzTYA39qdU" alt="Hand-poured ceramic vessels on the table at Aurelia" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"></div>
+                </div>
+
+                <!-- Item 6: Food -->
+                <div class="gallery-item break-inside-avoid mb-2 overflow-hidden block relative group" data-category="food">
+                    <div class="aspect-[4/5]">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXPLB8EpQ3v86I8BHZwdQX8iFPCB8bpOCZyhQKd0_eDhtV2Hb55WRHtlwlmO7_hUdoP8BBhKD5evJeKYZ4Sh6Fe4gDS9UvtUxT2N2xMMj8HW4QFCF7pXUOGN_ELpvUjTKxCG_vD_OWKaMscm-izW_fB8minXH0i9kfl3HTNwiQ9zgVcz7VNXsO4MR0VTugliD4yJE42yHNQslNSKRVm1ikAknxfxyFKrHT3rr_qDK3_8WeOW-oXswJESwCjGm6RdSyJcrT_jN1pFE" alt="Delicate amuse-bouche presented on handcrafted slate" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"></div>
+                </div>
+
+                <!-- Item 7: Interiors -->
+                <div class="gallery-item break-inside-avoid mb-2 overflow-hidden block relative group" data-category="interiors">
+                    <div class="aspect-[4/3]">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFZfu0UWvi99cwIZIbQpU2eQNELJ93aYiHHh8hcE5EXPcev_mxRgPfjwYKIuHRU-Ha0VUqT3c2b5NSrSmA3odatkpmvI6S7cLy8Q8l3FVJbUWGVnTBgHm5NmJInDcLvmbJelljxhxSv-aj-wdABiv3TUkHblwFYT-5KbZ6Dtd1fNhvYAE3AnK_syOZguhi2fyS5e270x8kg454Pu497sIc4_PP87dXrkRW4m_Dzi7TPB_i84U-NW2cy4zdEwpX9p1ACYZ6m10_U_s" alt="The intimate bar area with warm ambient lighting" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"></div>
+                </div>
+
+                <!-- Item 8: Food -->
+                <div class="gallery-item break-inside-avoid mb-2 overflow-hidden block relative group" data-category="food">
+                    <div class="aspect-square">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBK37XSgeYZ3X0Wc0BJyq8Wwje851xU1VC6xbLK_ezKZ3-1bsypnZCT3dLSQtAEmbC_ABcN_jb-YMafWGMATXgQJ0TroWpdW3U0BLhI_HlvJLObAY7Gvc2WO2qG3kdQXCO_bNxnxDmeHSyzCRt8F65Ffnu3Kcuz0QqpOmtzQ1sRfcFe-BCsqSwqh6_5Ljp-9lUEOBOYSGElByLFYEbH-iNa-5zAETOfaZZp3rCqr4QYv_JcVoXW29GlMAxmy4t4TglzFiGkWfufQ3k" alt="A richly spiced main course plated with finesse" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"></div>
+                </div>
+
+                <!-- Item 9: Events -->
+                <div class="gallery-item break-inside-avoid mb-2 overflow-hidden block relative group" data-category="events">
+                    <div class="aspect-[3/2]">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNfrb3T8MCdBojF96mpU8tgzYiWV6pcMlOd8L3s17qHZudRILSwlYAR16KTys-nlCq6jBQ4Lpf5-PBAoESWWiSVy38mmgcbP7lK9loUXqOv-2-VbuQPFgICoR-OTgaN1QtQdTCwpYJA47X8ld7Kd_732wGecLucTL6dZ7FhCMlnbR2G2DCxXwKLxYVITEBTVzX2YL1aSXmlF7aOc3RzdK5ZmGrNiCeyH7yFthEeYmqZGgdQXhySoElH79TMX0P2rUaJbYpIQ7GB20" alt="Guests celebrating a special occasion in the private salon" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"></div>
+                </div>
+
+                <!-- Item 10: Details -->
+                <div class="gallery-item break-inside-avoid mb-2 overflow-hidden block relative group" data-category="details">
+                    <div class="aspect-[4/5]">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqME71H3Q9PfTnDH5y1Z1vpjMB0zbCxM_Xkn5hbj2MvrJo54SFhHGLME6xHwRn08FVQ6Xn7LK9M0hP57MnCoEL7tY5L_BLDxw8pNpofdVnuobn6J1Ml_zojqKWcxd8NkIT5kjbi-9wjX2thnTM99rgSsoJAGupMQ9c3I0d56MZRyTDhiXyldcandc3YWtCSBUfjRu27ctmgSTZCt4JIxJLDMKCpCsNYXc_TFEHkJ7PD3IozNyLrzO_GHdVnLNJLxFTgXzTYA39qdU" alt="Linen napkins folded with care on the dining table" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"></div>
+                </div>
+
+                <!-- Item 11: Food -->
+                <div class="gallery-item break-inside-avoid mb-2 overflow-hidden block relative group" data-category="food">
+                    <div class="aspect-[4/3]">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaiqPm3Q31towKF6L2ZJe4_ZQ7ayxy9XokGkPyPv_vZa8wxBmX2UyZnjWF1TbvFLJU-NsxAx1SWbdx9fGN68jsjS2P_uyRQeEh4E_mJ_VOnmlWwpFMxH_SdHuHAltnzp1JIvF1SO7LPBFNV2yBdDKHRAzGc973U1FrcOJgmVZLOxX4twV8Zd1SSKBmRHfWdm2uaJ0Ckq3vOwPd9y4paA1Mk802Q5Mfj64fOJ5BejSW-qb6Nb1oSRCI9eeEI0aeKw0Xc5Ofjdl0d0M" alt="The dessert course — a study in texture and sweetness" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"></div>
+                </div>
+
+                <!-- Item 12: Interiors -->
+                <div class="gallery-item break-inside-avoid mb-2 overflow-hidden block relative group" data-category="interiors">
+                    <div class="aspect-[4/5]">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBM9ntBhD6X1EejfTyVOrseavusD-1Vy1vcHuN2zUmc73DDawuazxVynFd03yPv6HjPrP36vacRZFeShtbtN04tnpYsdE4-PUkh9OZLOz-hzJ_lf3IvG4Y1aXbGkGaMQQLmOTsiMMV6K1YiauNEDbDecjZ2l-zV-_o-SmYCzwYtXdKwga3EPYxIeHYr8SMwrKKogbE5eK5LMecHOxcuyKDhQ5Os0LVStwuEQeFolqieQh9casjZBiOMB7uAgaTOe1cKeuOO0HEP47o" alt="Evening light through the arched windows of the main hall" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"></div>
+                </div>
+
+                <!-- Item 13: Food -->
+                <div class="gallery-item break-inside-avoid mb-2 overflow-hidden block relative group" data-category="food">
+                    <div class="aspect-square">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaN14r497iX7lv2K9MERWWY8czLCGbG4-deKFVWNfmFz4XpUIuYAKLMCYGWhbiYsOGR7O6nFx9jRSJBFGnYF5KnQV2_xADxKDgLr7k5uZsYE4xxCziedHKuZ2jDa0QoqmzSx4aD8lL8mvG4Lk6rWPeBAAg4xlD8rPLJvT07zCUZj7GgcEvvjM0_F_k1dlqiVlfCrI-DulejRewLszDqm_jpjQ7uDmuvgqi65rVo5bIGCGmrVTAUUaABAsaYtBegiNKJH8WBt9YsZ0" alt="A garden-fresh starter garnished with edible flowers" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"></div>
+                </div>
+
+                <!-- Item 14: Details -->
+                <div class="gallery-item break-inside-avoid mb-2 overflow-hidden block relative group" data-category="details">
+                    <div class="aspect-[3/2]">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqME71H3Q9PfTnDH5y1Z1vpjMB0zbCxM_Xkn5hbj2MvrJo54SFhHGLME6xHwRn08FVQ6Xn7LK9M0hP57MnCoEL7tY5L_BLDxw8pNpofdVnuobn6J1Ml_zojqKWcxd8NkIT5kjbi-9wjX2thnTM99rgSsoJAGupMQ9c3I0d56MZRyTDhiXyldcandc3YWtCSBUfjRu27ctmgSTZCt4JIxJLDMKCpCsNYXc_TFEHkJ7PD3IozNyLrzO_GHdVnLNJLxFTgXzTYA39qdU" alt="Monogrammed glassware catching the candlelight" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"></div>
+                </div>
+
+                <!-- Item 15: Events -->
+                <div class="gallery-item break-inside-avoid mb-2 overflow-hidden block relative group" data-category="events">
+                    <div class="aspect-[4/5]">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNfrb3T8MCdBojF96mpU8tgzYiWV6pcMlOd8L3s17qHZudRILSwlYAR16KTys-nlCq6jBQ4Lpf5-PBAoESWWiSVy38mmgcbP7lK9loUXqOv-2-VbuQPFgICoR-OTgaN1QtQdTCwpYJA47X8ld7Kd_732wGecLucTL6dZ7FhCMlnbR2G2DCxXwKLxYVITEBTVzX2YL1aSXmlF7aOc3RzdK5ZmGrNiCeyH7yFthEeYmqZGgdQXhySoElH79TMX0P2rUaJbYpIQ7GB20" alt="Chef presenting at an exclusive chef's table dinner" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"></div>
+                </div>
+
+                <!-- Item 16: Interiors -->
+                <div class="gallery-item break-inside-avoid mb-2 overflow-hidden block relative group" data-category="interiors">
+                    <div class="aspect-square">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFZfu0UWvi99cwIZIbQpU2eQNELJ93aYiHHh8hcE5EXPcev_mxRgPfjwYKIuHRU-Ha0VUqT3c2b5NSrSmA3odatkpmvI6S7cLy8Q8l3FVJbUWGVnTBgHm5NmJInDcLvmbJelljxhxSv-aj-wdABiv3TUkHblwFYT-5KbZ6Dtd1fNhvYAE3AnK_syOZguhi2fyS5e270x8kg454Pu497sIc4_PP87dXrkRW4m_Dzi7TPB_i84U-NW2cy4zdEwpX9p1ACYZ6m10_U_s" alt="The private dining room set for an intimate gathering" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"></div>
+                </div>
+
+                <!-- Item 17: Food -->
+                <div class="gallery-item break-inside-avoid mb-2 overflow-hidden block relative group" data-category="food">
+                    <div class="aspect-[4/5]">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXPLB8EpQ3v86I8BHZwdQX8iFPCB8bpOCZyhQKd0_eDhtV2Hb55WRHtlwlmO7_hUdoP8BBhKD5evJeKYZ4Sh6Fe4gDS9UvtUxT2N2xMMj8HW4QFCF7pXUOGN_ELpvUjTKxCG_vD_OWKaMscm-izW_fB8minXH0i9kfl3HTNwiQ9zgVcz7VNXsO4MR0VTugliD4yJE42yHNQslNSKRVm1ikAknxfxyFKrHT3rr_qDK3_8WeOW-oXswJESwCjGm6RdSyJcrT_jN1pFE" alt="A saffron-infused bisque poured tableside" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"></div>
+                </div>
+
+                <!-- Item 18: Details -->
+                <div class="gallery-item break-inside-avoid mb-2 overflow-hidden block relative group" data-category="details">
+                    <div class="aspect-[4/3]">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqME71H3Q9PfTnDH5y1Z1vpjMB0zbCxM_Xkn5hbj2MvrJo54SFhHGLME6xHwRn08FVQ6Xn7LK9M0hP57MnCoEL7tY5L_BLDxw8pNpofdVnuobn6J1Ml_zojqKWcxd8NkIT5kjbi-9wjX2thnTM99rgSsoJAGupMQ9c3I0d56MZRyTDhiXyldcandc3YWtCSBUfjRu27ctmgSTZCt4JIxJLDMKCpCsNYXc_TFEHkJ7PD3IozNyLrzO_GHdVnLNJLxFTgXzTYA39qdU" alt="Freshly pressed linen and silverware on the table" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"></div>
+                </div>
+
+                <!-- Item 19: Food -->
+                <div class="gallery-item break-inside-avoid mb-2 overflow-hidden block relative group" data-category="food">
+                    <div class="aspect-[3/2]">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBK37XSgeYZ3X0Wc0BJyq8Wwje851xU1VC6xbLK_ezKZ3-1bsypnZCT3dLSQtAEmbC_ABcN_jb-YMafWGMATXgQJ0TroWpdW3U0BLhI_HlvJLObAY7Gvc2WO2qG3kdQXCO_bNxnxDmeHSyzCRt8F65Ffnu3Kcuz0QqpOmtzQ1sRfcFe-BCsqSwqh6_5Ljp-9lUEOBOYSGElByLFYEbH-iNa-5zAETOfaZZp3rCqr4QYv_JcVoXW29GlMAxmy4t4TglzFiGkWfufQ3k" alt="The bread course — warm, freshly baked and served with cultured butter" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"></div>
+                </div>
+
+                <!-- Item 20: Interiors -->
+                <div class="gallery-item break-inside-avoid mb-2 overflow-hidden block relative group" data-category="interiors">
+                    <div class="aspect-[4/5]">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBM9ntBhD6X1EejfTyVOrseavusD-1Vy1vcHuN2zUmc73DDawuazxVynFd03yPv6HjPrP36vacRZFeShtbtN04tnpYsdE4-PUkh9OZLOz-hzJ_lf3IvG4Y1aXbGkGaMQQLmOTsiMMV6K1YiauNEDbDecjZ2l-zV-_o-SmYCzwYtXdKwga3EPYxIeHYr8SMwrKKogbE5eK5LMecHOxcuyKDhQ5Os0LVStwuEQeFolqieQh9casjZBiOMB7uAgaTOe1cKeuOO0HEP47o" alt="Candlelit tables awaiting guests on a Friday evening" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"></div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section 4: CTA Band -->
+        <section class="py-24 bg-[#1f1f1c] text-center">
+            <div class="max-w-screen-2xl mx-auto px-6 md:px-12 reveal">
+                <h2 class="font-headline text-4xl text-white font-light mb-4">Reserve your table.</h2>
+                <p class="text-white/60 mb-12 font-body font-light tracking-wide">Experience Aurelia in person.</p>
+                <a href="reservations.html" class="bg-secondary text-on-secondary px-10 py-3.5 text-[10px] uppercase tracking-[0.2em] font-bold font-label transition-all duration-500 hover:bg-secondary/90 inline-block">Book a Table</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface-container-low w-full relative border-t border-outline-variant/10">
+        <div class="w-full px-6 md:px-12 py-20 grid grid-cols-1 md:grid-cols-4 gap-12 max-w-screen-2xl mx-auto">
+            <div class="space-y-6">
+                <a class="text-2xl font-headline font-light text-on-surface" href="index.html">Aurelia</a>
+                <p class="font-body font-light tracking-wide text-sm text-primary max-w-xs">South Asian-Continental fusion. A dialogue between two culinary worlds, served in an atmosphere of understated luxury.</p>
+            </div>
+            <div class="space-y-6">
+                <h4 class="font-label text-xs font-bold uppercase tracking-widest text-on-surface">Explore</h4>
+                <div class="flex flex-col gap-4">
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="menu.html">Menu</a>
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="about.html">About</a>
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="private-dining.html">Private Dining</a>
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="gallery.html">Gallery</a>
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="gift-cards.html">Gift Cards</a>
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="press.html">Press</a>
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="contact.html">Contact</a>
+                </div>
+            </div>
+            <div class="md:col-span-2 space-y-6">
+                <h4 class="font-label text-xs font-bold uppercase tracking-widest text-on-surface">The Journal</h4>
+                <p class="font-body font-light tracking-wide text-sm text-primary">Seasonal menus, chef's notes, and invitations to the table. Once a month.</p>
+                <form class="flex border-b border-outline-variant/40 pb-2" onsubmit="event.preventDefault(); this.querySelector('input').value=''; alert('Thank you for subscribing.');">
+                    <input class="bg-transparent border-none focus:ring-0 w-full font-body font-light text-sm text-on-surface placeholder:text-primary/50" placeholder="Your email address" type="email" required aria-label="Email address"/>
+                    <button type="submit" class="text-secondary font-label text-xs uppercase tracking-widest font-bold hover:text-on-secondary-container transition-colors">Join</button>
+                </form>
+                <div class="pt-4">
+                    <span class="font-label text-xs font-bold uppercase tracking-widest text-on-surface block mb-3">Locale</span>
+                    <div class="text-xs tracking-widest text-primary">
+                        <button class="locale-btn hover:text-secondary transition-colors active font-bold" data-locale="us">US</button>
+                        <span class="mx-1">|</span>
+                        <button class="locale-btn hover:text-secondary transition-colors" data-locale="uk">UK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-screen-2xl mx-auto px-6 md:px-12 pb-12 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="font-body font-light tracking-wide text-xs text-primary opacity-60">&copy; 2026 Aurelia Restaurant. All Rights Reserved.</p>
+            <div class="flex flex-wrap justify-center gap-6 font-body font-light text-xs text-primary/60">
+                <a class="hover:text-secondary transition-colors" href="privacy.html">Privacy</a>
+                <a class="hover:text-secondary transition-colors" href="terms.html">Terms</a>
+                <a class="hover:text-secondary transition-colors" href="allergens.html">Allergens</a>
+                <a class="hover:text-secondary transition-colors" href="cookies.html">Cookies</a>
+                <a class="hover:text-secondary transition-colors" href="accessibility.html">Accessibility</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bottom Nav Bar (Mobile) -->
+    <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-6 pb-safe pt-3 lg:hidden bg-background/90 backdrop-blur-xl shadow-[0_-4px_20px_rgba(28,28,25,0.04)] border-t border-outline-variant/20">
+        <a class="flex flex-col items-center justify-center text-primary" href="menu.html">
+            <span class="material-symbols-outlined">restaurant_menu</span>
+            <span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Menu</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-primary" href="reservations.html">
+            <span class="material-symbols-outlined">calendar_today</span>
+            <span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Reserve</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-secondary scale-110" href="gallery.html">
+            <span class="material-symbols-outlined">collections</span>
+            <span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Gallery</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-primary" href="contact.html">
+            <span class="material-symbols-outlined">location_on</span>
+            <span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Contact</span>
+        </a>
+    </nav>
+
+    <script src="js/main.js"></script>
+    <script>
+        const filterBtns = document.querySelectorAll('.gallery-filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => { b.classList.remove('text-secondary','border-secondary'); b.classList.add('text-stone-400','border-transparent'); });
+                btn.classList.add('text-secondary','border-secondary');
+                btn.classList.remove('text-stone-400','border-transparent');
+                const filter = btn.dataset.filter;
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.dataset.category === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

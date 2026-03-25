@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html class="light scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>About | Aurelia</title>
+    <meta name="description" content="The story behind Aurelia — South Asian-Continental fusion fine dining."/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-surface": "#e8e4dc",
+                        "secondary": "#c9a84c",
+                        "on-secondary": "#1a1400",
+                        "on-secondary-container": "#c9a84c",
+                        "secondary-container": "#3a2c00",
+                        "outline": "#504935",
+                        "outline-variant": "#2c2920",
+                        "surface": "#111110",
+                        "surface-container": "#191917",
+                        "surface-container-low": "#151513",
+                        "surface-container-high": "#1f1f1c",
+                        "surface-container-highest": "#262623",
+                        "on-background": "#e8e4dc",
+                        "inverse-surface": "#e8e4dc",
+                        "primary": "#908878",
+                        "background": "#0d0d0b",
+                    },
+                    fontFamily: { "headline": ["Noto Serif", "serif"], "body": ["Manrope", "sans-serif"], "label": ["Manrope", "sans-serif"] },
+                    borderRadius: { "DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s cubic-bezier(0.25,0.1,0.25,1), transform 0.8s cubic-bezier(0.25,0.1,0.25,1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+        body::after { content: ''; position: fixed; inset: 0; z-index: 9998; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E"); opacity: 0.025; mix-blend-mode: overlay; }
+        input, select, textarea { color-scheme: dark; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-secondary/20 selection:text-secondary">
+
+    <!-- Skip to Content -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-secondary focus:text-white focus:px-4 focus:py-2 focus:text-xs focus:tracking-widest focus:uppercase">Skip to Content</a>
+
+    <!-- Top Navigation -->
+    <nav id="site-header" class="fixed top-0 w-full z-50 bg-[#0d0d0b]/90 backdrop-blur-md transition-all duration-500">
+        <div class="flex justify-between items-center px-6 md:px-12 py-6 w-full max-w-screen-2xl mx-auto">
+            <div class="hidden lg:flex gap-8 items-center">
+                <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="menu.html">Menu</a>
+                <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="reservations.html">Reservations</a>
+                <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="private-dining.html">Private Dining</a>
+            </div>
+            <a class="text-3xl font-light font-headline tracking-tight text-on-surface" href="index.html">Aurelia</a>
+            <div class="flex gap-8 items-center">
+                <div class="hidden lg:flex gap-8 items-center">
+                    <a class="font-headline tracking-widest uppercase text-xs text-secondary border-b border-secondary/40 pb-0.5" href="about.html">About</a>
+                    <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="gallery.html">Gallery</a>
+                    <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="contact.html">Contact</a>
+                </div>
+                <a href="reservations.html" class="bg-secondary text-on-secondary px-6 py-2.5 text-[10px] uppercase tracking-[0.2em] font-bold transition-all duration-500 hover:bg-secondary/90">Book a Table</a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content">
+
+        <!-- Section 1: Hero -->
+        <section class="relative w-full flex items-center justify-center overflow-hidden" style="height: 60vh;">
+            <div class="absolute inset-0 z-0">
+                <img
+                    alt="Kitchen at Aurelia — fire, smoke, and spice"
+                    class="w-full h-full object-cover"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOkUnSj2vgDzYew3Qh_itsDZlQJnsSZWBrPzwbmz7C7tVBFb7rPfMPMbiY3TDZ6bfhPgjf3x0Tsra4xnsQW6Gw07Kx6BRpAAa3lqtyPnywZat5055wf9l_VXv3TvOf0na4NtwMSCFG9jWiEhGYNKLOy_5TIKpfyRR4JYt91XmV1QTa30t4nO48kEXuaKcn0-FXwvNMybs7Ibzq9ubx472puOv0xx0pBfJ1MDHJfqEx-HKzY0kmYt4mD0mO4o6yP-0FI2HDYGvxLsY"
+                />
+                <div class="absolute inset-0 bg-gradient-to-b from-black/50 to-background"></div>
+            </div>
+            <div class="relative z-10 text-center px-6 max-w-4xl mx-auto reveal">
+                <p class="font-label text-xs uppercase tracking-[0.3em] font-bold text-secondary mb-6">Our Story</p>
+                <h1 class="font-headline text-5xl md:text-7xl font-light text-white tracking-tight leading-none">The Story Behind the Flame</h1>
+            </div>
+        </section>
+
+        <!-- Section 2: Origin Story -->
+        <section id="our-story" class="py-32 px-6 md:px-12 bg-background">
+            <div class="max-w-3xl mx-auto">
+                <div class="reveal">
+                    <p class="font-label text-xs uppercase tracking-[0.3em] font-bold text-secondary mb-10">Origin</p>
+                    <blockquote class="font-headline text-3xl md:text-4xl font-light italic text-on-surface leading-snug mb-14">
+                        "Born from the fire of South Asian tradition and the discipline of Continental craft."
+                    </blockquote>
+                </div>
+                <div class="space-y-8 reveal">
+                    <p class="font-body text-lg font-light leading-relaxed text-primary">
+                        Aurelia began as a question: what happens when two of the world's great culinary traditions — the aromatic fire of South Asia and the studied precision of Continental Europe — are placed in honest conversation? Not fusion for novelty's sake, but a genuine synthesis built on deep respect for both lineages.
+                    </p>
+                    <p class="font-body text-lg font-light leading-relaxed text-primary">
+                        Our roots trace back to the open-air grills of Karachi, where coconut palms bend over charcoal and the air carries the scent of spice on smoke. That sensory memory is the foundation. From it, we build dishes that honour the boldness of that tradition while bringing the precision and restraint of a European kitchen.
+                    </p>
+                    <p class="font-body text-lg font-light leading-relaxed text-primary">
+                        The name Aurelia — from the Latin for golden — speaks to warmth, radiance, and the kind of timeless quality that lives in a meal long after the plates have been cleared. We chose it because it belongs to both worlds equally.
+                    </p>
+                </div>
+                <div class="w-24 h-[1px] bg-secondary/30 my-12 reveal"></div>
+            </div>
+        </section>
+
+        <!-- Section 3: The Chef -->
+        <section id="the-chef" class="py-24 bg-surface-container-low">
+            <div class="max-w-screen-2xl mx-auto px-6 md:px-12">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                    <!-- Left: Portrait -->
+                    <div class="reveal">
+                        <div class="aspect-[3/4] overflow-hidden w-full">
+                            <img
+                                alt="Executive Chef at work"
+                                class="w-full h-full object-cover"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOkUnSj2vgDzYew3Qh_itsDZlQJnsSZWBrPzwbmz7C7tVBFb7rPfMPMbiY3TDZ6bfhPgjf3x0Tsra4xnsQW6Gw07Kx6BRpAAa3lqtyPnywZat5055wf9l_VXv3TvOf0na4NtwMSCFG9jWiEhGYNKLOy_5TIKpfyRR4JYt91XmV1QTa30t4nO48kEXuaKcn0-FXwvNMybs7Ibzq9ubx472puOv0xx0pBfJ1MDHJfqEx-HKzY0kmYt4mD0mO4o6yP-0FI2HDYGvxLsY"
+                            />
+                        </div>
+                    </div>
+                    <!-- Right: Bio -->
+                    <div class="reveal">
+                        <p class="font-label text-xs uppercase tracking-[0.3em] font-bold text-secondary mb-6">The Chef</p>
+                        <h2 class="font-headline text-4xl font-light text-on-surface mb-2">Chef Arman Khalil</h2>
+                        <p class="text-secondary text-sm uppercase tracking-widest font-bold mb-8">Executive Chef &amp; Co-Founder</p>
+                        <div class="space-y-6 mb-12">
+                            <p class="font-body font-light text-primary leading-relaxed">
+                                Chef Arman trained under three-Michelin-starred kitchens in Lyon and London before returning to his roots. His culinary philosophy is built on a single principle: that technique in the service of feeling is the only technique worth practising.
+                            </p>
+                            <p class="font-body font-light text-primary leading-relaxed">
+                                His formative years were split between his grandmother's kitchen in Lahore — where he learned that spice is a language, not a seasoning — and the classical kitchens of Europe, where he absorbed the discipline that gives that language structure.
+                            </p>
+                            <p class="font-body font-light text-primary leading-relaxed">
+                                At Aurelia, he brings both vocabularies together. The result is a cuisine that cannot be categorised, only experienced.
+                            </p>
+                        </div>
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-secondary text-xl">check_circle</span>
+                                <span class="font-body text-sm font-light text-primary">Michelin Guide recognised, 2024</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-secondary text-xl">check_circle</span>
+                                <span class="font-body text-sm font-light text-primary">World's 50 Best — One to Watch, 2025</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-secondary text-xl">check_circle</span>
+                                <span class="font-body text-sm font-light text-primary">James Beard Semifinalist, 2025</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Our Sourcing -->
+        <section id="sourcing" class="py-32 px-6 md:px-12 bg-background">
+            <div class="max-w-screen-2xl mx-auto">
+                <div class="text-center mb-20 reveal">
+                    <p class="font-label text-xs uppercase tracking-[0.3em] font-bold text-secondary mb-6">Sourcing</p>
+                    <h2 class="font-headline text-4xl md:text-5xl font-light text-on-surface">From Field to Flame</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
+                    <!-- Column 1: The Land -->
+                    <div class="text-center reveal">
+                        <span class="material-symbols-outlined text-secondary text-3xl mb-4 block">eco</span>
+                        <h3 class="font-headline text-xl text-on-surface mb-4">The Land</h3>
+                        <p class="font-body text-sm text-primary font-light leading-relaxed">Our lamb and beef arrive weekly from heritage farms across the British Isles and the American Midwest, where animals graze on open pasture. We name our suppliers because provenance is not a footnote — it is the first ingredient.</p>
+                    </div>
+                    <!-- Column 2: The Sea -->
+                    <div class="text-center reveal">
+                        <span class="material-symbols-outlined text-secondary text-3xl mb-4 block">water</span>
+                        <h3 class="font-headline text-xl text-on-surface mb-4">The Sea</h3>
+                        <p class="font-body text-sm text-primary font-light leading-relaxed">Wild-caught only. We work with day-boat fishermen in both the Atlantic and the Indian Ocean. Our snapper, sea bass, and lobster are sourced to MSC-certified standards and arrive at our kitchen within 48 hours of catch.</p>
+                    </div>
+                    <!-- Column 3: The Spice -->
+                    <div class="text-center reveal">
+                        <span class="material-symbols-outlined text-secondary text-3xl mb-4 block">local_florist</span>
+                        <h3 class="font-headline text-xl text-on-surface mb-4">The Spice</h3>
+                        <p class="font-body text-sm text-primary font-light leading-relaxed">Our spice blends are ground in-house each morning from whole dried spices sourced directly from growers in Sindh and Kerala. No pre-ground. No shortcuts.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Values -->
+        <section class="py-24 bg-[#1f1f1c] text-[#e8e4dc]">
+            <div class="max-w-screen-2xl mx-auto px-6 md:px-12">
+                <div class="flex flex-col md:flex-row gap-12 justify-center items-center md:items-stretch reveal">
+                    <!-- Value 1 -->
+                    <div class="text-center flex-1 max-w-xs">
+                        <h3 class="font-headline text-2xl mb-2 text-[#e8e4dc]">Integrity</h3>
+                        <p class="font-body text-white/60 text-sm">Every ingredient chosen with intention.</p>
+                    </div>
+                    <!-- Divider -->
+                    <div class="hidden md:block w-[1px] bg-white/10 self-stretch"></div>
+                    <!-- Value 2 -->
+                    <div class="text-center flex-1 max-w-xs">
+                        <h3 class="font-headline text-2xl mb-2 text-[#e8e4dc]">Craft</h3>
+                        <p class="font-body text-white/60 text-sm">Every dish built with discipline.</p>
+                    </div>
+                    <!-- Divider -->
+                    <div class="hidden md:block w-[1px] bg-white/10 self-stretch"></div>
+                    <!-- Value 3 -->
+                    <div class="text-center flex-1 max-w-xs">
+                        <h3 class="font-headline text-2xl mb-2 text-[#e8e4dc]">Hospitality</h3>
+                        <p class="font-body text-white/60 text-sm">Every guest made to feel at home.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: CTA Band -->
+        <section class="py-24 bg-surface-container-low text-center">
+            <div class="max-w-2xl mx-auto px-6 reveal">
+                <h2 class="font-headline text-4xl font-light text-on-surface mb-4">An evening awaits.</h2>
+                <p class="font-body text-primary mb-12">Reserve your table and taste the story.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="reservations.html" class="bg-secondary text-on-secondary px-10 py-4 text-xs uppercase tracking-[0.3em] font-bold hover:bg-secondary/90 transition-all duration-500 w-full sm:w-auto">Book a Table</a>
+                    <a href="private-dining.html" class="border border-outline-variant text-on-surface px-10 py-4 text-xs uppercase tracking-[0.3em] font-bold hover:bg-surface-container-high transition-all duration-500 w-full sm:w-auto">Private Dining</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface-container-low w-full relative border-t border-outline-variant/10">
+        <div class="w-full px-6 md:px-12 py-20 grid grid-cols-1 md:grid-cols-4 gap-12 max-w-screen-2xl mx-auto">
+            <div class="space-y-6">
+                <a class="text-2xl font-headline font-light text-on-surface" href="index.html">Aurelia</a>
+                <p class="font-body font-light tracking-wide text-sm text-primary max-w-xs">South Asian-Continental fusion. A dialogue between two culinary worlds, served in an atmosphere of understated luxury.</p>
+            </div>
+            <div class="space-y-6">
+                <h4 class="font-label text-xs font-bold uppercase tracking-widest text-on-surface">Explore</h4>
+                <div class="flex flex-col gap-4">
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="menu.html">Menu</a>
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="about.html">About</a>
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="private-dining.html">Private Dining</a>
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="gallery.html">Gallery</a>
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="gift-cards.html">Gift Cards</a>
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="press.html">Press</a>
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="contact.html">Contact</a>
+                </div>
+            </div>
+            <div class="md:col-span-2 space-y-6">
+                <h4 class="font-label text-xs font-bold uppercase tracking-widest text-on-surface">The Journal</h4>
+                <p class="font-body font-light tracking-wide text-sm text-primary">Seasonal menus, chef's notes, and invitations to the table. Once a month.</p>
+                <form class="flex border-b border-outline-variant/40 pb-2" onsubmit="event.preventDefault(); this.querySelector('input').value=''; alert('Thank you for subscribing.');">
+                    <input class="bg-transparent border-none focus:ring-0 w-full font-body font-light text-sm text-on-surface placeholder:text-primary/50" placeholder="Your email address" type="email" required aria-label="Email address"/>
+                    <button type="submit" class="text-secondary font-label text-xs uppercase tracking-widest font-bold hover:text-on-secondary-container transition-colors">Join</button>
+                </form>
+                <div class="pt-4">
+                    <span class="font-label text-xs font-bold uppercase tracking-widest text-on-surface block mb-3">Locale</span>
+                    <div class="text-xs tracking-widest text-primary">
+                        <button class="locale-btn hover:text-secondary transition-colors active font-bold" data-locale="us">US</button>
+                        <span class="mx-1">|</span>
+                        <button class="locale-btn hover:text-secondary transition-colors" data-locale="uk">UK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-screen-2xl mx-auto px-6 md:px-12 pb-12 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="font-body font-light tracking-wide text-xs text-primary opacity-60">&copy; 2026 Aurelia Restaurant. All Rights Reserved.</p>
+            <div class="flex flex-wrap justify-center gap-6 font-body font-light text-xs text-primary/60">
+                <a class="hover:text-secondary transition-colors" href="privacy.html">Privacy</a>
+                <a class="hover:text-secondary transition-colors" href="terms.html">Terms</a>
+                <a class="hover:text-secondary transition-colors" href="allergens.html">Allergens</a>
+                <a class="hover:text-secondary transition-colors" href="cookies.html">Cookies</a>
+                <a class="hover:text-secondary transition-colors" href="accessibility.html">Accessibility</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bottom Nav Bar (Mobile) -->
+    <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-6 pb-safe pt-3 lg:hidden bg-background/90 backdrop-blur-xl shadow-[0_-4px_20px_rgba(28,28,25,0.04)] border-t border-outline-variant/20">
+        <a class="flex flex-col items-center justify-center text-primary" href="menu.html">
+            <span class="material-symbols-outlined">restaurant_menu</span>
+            <span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Menu</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-primary" href="reservations.html">
+            <span class="material-symbols-outlined">calendar_today</span>
+            <span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Reserve</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-primary" href="gallery.html">
+            <span class="material-symbols-outlined">collections</span>
+            <span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Gallery</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-primary" href="contact.html">
+            <span class="material-symbols-outlined">location_on</span>
+            <span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Contact</span>
+        </a>
+    </nav>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

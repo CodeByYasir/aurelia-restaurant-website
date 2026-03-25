@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html class="light scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Menu | Aurelia</title>
+    <meta name="description" content="Explore Aurelia's menu — South Asian-Continental fusion fine dining."/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-surface": "#e8e4dc",
+                        "secondary": "#c9a84c",
+                        "on-secondary": "#1a1400",
+                        "on-secondary-container": "#c9a84c",
+                        "secondary-container": "#3a2c00",
+                        "outline": "#504935",
+                        "outline-variant": "#2c2920",
+                        "surface": "#111110",
+                        "surface-container": "#191917",
+                        "surface-container-low": "#151513",
+                        "surface-container-high": "#1f1f1c",
+                        "surface-container-highest": "#262623",
+                        "on-background": "#e8e4dc",
+                        "inverse-surface": "#e8e4dc",
+                        "primary": "#908878",
+                        "background": "#0d0d0b",
+                    },
+                    fontFamily: {
+                        "headline": ["Noto Serif", "serif"],
+                        "body": ["Manrope", "sans-serif"],
+                        "label": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s cubic-bezier(0.25,0.1,0.25,1), transform 0.8s cubic-bezier(0.25,0.1,0.25,1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        body::after { content: ''; position: fixed; inset: 0; z-index: 9998; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E"); opacity: 0.025; mix-blend-mode: overlay; }
+        input, select, textarea { color-scheme: dark; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body antialiased">
+
+    <!-- Navigation -->
+    <nav id="site-header" class="fixed top-0 w-full z-50 bg-[#0d0d0b]/90 backdrop-blur-md transition-all duration-500">
+        <div class="flex justify-between items-center px-6 md:px-12 py-6 w-full max-w-screen-2xl mx-auto">
+            <div class="hidden lg:flex gap-8 items-center">
+                <a class="font-headline tracking-widest uppercase text-xs text-secondary border-b border-secondary/40 pb-1" href="menu.html">Menu</a>
+                <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="reservations.html">Reservations</a>
+                <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="private-dining.html">Private Dining</a>
+            </div>
+            <a class="text-3xl font-light font-headline tracking-tight text-on-surface" href="index.html">Aurelia</a>
+            <div class="flex gap-8 items-center">
+                <div class="hidden lg:flex gap-8 items-center">
+                    <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="about.html">About</a>
+                    <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="gallery.html">Gallery</a>
+                    <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="contact.html">Contact</a>
+                </div>
+                <a href="reservations.html" class="bg-secondary text-on-secondary px-6 py-2.5 text-[10px] uppercase tracking-[0.2em] font-bold transition-all duration-500 hover:bg-secondary/90">Book a Table</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="relative h-[40vh] flex items-center justify-center overflow-hidden" style="background: url('images/morocco-chicken.jpg') center/cover no-repeat;">
+        <div class="absolute inset-0 bg-black/50"></div>
+        <div class="relative z-10 text-center px-6">
+            <h1 class="font-headline text-5xl md:text-7xl text-white font-light mb-4">The Menu</h1>
+            <p class="font-headline text-white/80 text-lg italic">Flavours that cross borders.</p>
+        </div>
+    </section>
+
+    <!-- Sticky Tab Bar -->
+    <div class="sticky top-[72px] z-40 bg-background/95 backdrop-blur-sm border-b border-outline-variant/20">
+        <div class="max-w-screen-2xl mx-auto px-6 md:px-12 flex gap-8 overflow-x-auto no-scrollbar py-4">
+            <button class="menu-tab-btn font-label text-xs uppercase tracking-[0.3em] font-bold whitespace-nowrap pb-2 transition-colors duration-300 text-secondary border-b-2 border-secondary" data-tab="tab-lunch">Lunch</button>
+            <button class="menu-tab-btn font-label text-xs uppercase tracking-[0.3em] font-bold whitespace-nowrap pb-2 transition-colors duration-300 text-stone-400 border-b-2 border-transparent" data-tab="tab-dinner">Dinner</button>
+            <button class="menu-tab-btn font-label text-xs uppercase tracking-[0.3em] font-bold whitespace-nowrap pb-2 transition-colors duration-300 text-stone-400 border-b-2 border-transparent" data-tab="tab-drinks">Drinks</button>
+            <button class="menu-tab-btn font-label text-xs uppercase tracking-[0.3em] font-bold whitespace-nowrap pb-2 transition-colors duration-300 text-stone-400 border-b-2 border-transparent" data-tab="tab-desserts">Desserts</button>
+            <button class="menu-tab-btn font-label text-xs uppercase tracking-[0.3em] font-bold whitespace-nowrap pb-2 transition-colors duration-300 text-stone-400 border-b-2 border-transparent" data-tab="tab-seasonal">Seasonal</button>
+        </div>
+    </div>
+
+    <!-- Menu Content -->
+    <section class="max-w-screen-2xl mx-auto px-6 md:px-12 py-16">
+
+        <!-- Dietary Filters -->
+        <div class="flex flex-wrap gap-3 mb-12">
+            <button class="diet-filter-btn border border-stone-300 text-stone-400 px-4 py-1.5 text-[10px] uppercase tracking-widest font-bold transition-all duration-300" data-filter="v">Vegetarian</button>
+            <button class="diet-filter-btn border border-stone-300 text-stone-400 px-4 py-1.5 text-[10px] uppercase tracking-widest font-bold transition-all duration-300" data-filter="vg">Vegan</button>
+            <button class="diet-filter-btn border border-stone-300 text-stone-400 px-4 py-1.5 text-[10px] uppercase tracking-widest font-bold transition-all duration-300" data-filter="gf">Gluten Free</button>
+            <button class="diet-filter-btn border border-stone-300 text-stone-400 px-4 py-1.5 text-[10px] uppercase tracking-widest font-bold transition-all duration-300" data-filter="df">Dairy Free</button>
+        </div>
+
+        <!-- ======================== LUNCH ======================== -->
+        <div id="tab-lunch" class="menu-tab-panel">
+            <div class="grid lg:grid-cols-2 gap-x-32 gap-y-8">
+                <!-- Left Column - Starters -->
+                <div class="space-y-12 mb-16">
+                    <h3 class="font-label text-xs uppercase tracking-[0.4em] text-secondary border-b border-outline-variant/30 pb-4 inline-block font-bold">Starters</h3>
+                    <div class="space-y-10">
+                        <!-- Dynamite Prawns -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="gf">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Dynamite Prawns</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="24" data-price-uk="19">24</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">Jumbo tiger prawns, spiced tempura, honey-sriracha emulsion, toasted sesame.</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">GF</span>
+                                <button class="allergen-info-btn text-[10px] font-label tracking-wider border border-stone-300 text-stone-400 w-5 h-5 rounded-full hover:border-secondary hover:text-secondary transition-colors inline-flex items-center justify-center" data-dish="Dynamite Prawns" data-allergens="Crustaceans, Sesame, Gluten" aria-label="Allergen information">i</button>
+                            </div>
+                        </div>
+
+                        <!-- Spiced Cauliflower Velouté -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="v vg gf">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Spiced Cauliflower Velouté</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="14" data-price-uk="11">14</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">Roasted cauliflower, toasted cumin cream, crispy curry leaves, smoked paprika oil.</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">V</span>
+                                <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">VG</span>
+                                <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">GF</span>
+                                <button class="allergen-info-btn text-[10px] font-label tracking-wider border border-stone-300 text-stone-400 w-5 h-5 rounded-full hover:border-secondary hover:text-secondary transition-colors inline-flex items-center justify-center" data-dish="Spiced Cauliflower Velouté" data-allergens="No major allergens" aria-label="Allergen information">i</button>
+                            </div>
+                        </div>
+
+                        <!-- Seared Tuna Tataki -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="gf df">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Seared Tuna Tataki</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="22" data-price-uk="17">22</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">Sesame-crusted yellowfin, wasabi ponzu, pickled ginger, shiso leaf.</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">GF</span>
+                                <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">DF</span>
+                                <button class="allergen-info-btn text-[10px] font-label tracking-wider border border-stone-300 text-stone-400 w-5 h-5 rounded-full hover:border-secondary hover:text-secondary transition-colors inline-flex items-center justify-center" data-dish="Seared Tuna Tataki" data-allergens="Fish, Sesame, Soya" aria-label="Allergen information">i</button>
+                            </div>
+                        </div>
+
+                        <!-- Lamb Seekh Kebab -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Lamb Seekh Kebab</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="18" data-price-uk="14">18</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">Hand-minced lamb, green chilli, charred over oak embers, mint raita.</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <button class="allergen-info-btn text-[10px] font-label tracking-wider border border-stone-300 text-stone-400 w-5 h-5 rounded-full hover:border-secondary hover:text-secondary transition-colors inline-flex items-center justify-center" data-dish="Lamb Seekh Kebab" data-allergens="Milk" aria-label="Allergen information">i</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Mains -->
+                <div class="space-y-12 mb-16">
+                    <h3 class="font-label text-xs uppercase tracking-[0.4em] text-secondary border-b border-outline-variant/30 pb-4 inline-block font-bold">Mains</h3>
+                    <div class="space-y-10">
+                        <!-- Chicken Tikka Wrap -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Chicken Tikka Wrap</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="19" data-price-uk="15">19</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">Tandoori-spiced chicken, pickled onion, coriander chutney, warm flatbread.</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <button class="allergen-info-btn text-[10px] font-label tracking-wider border border-stone-300 text-stone-400 w-5 h-5 rounded-full hover:border-secondary hover:text-secondary transition-colors inline-flex items-center justify-center" data-dish="Chicken Tikka Wrap" data-allergens="Gluten, Milk" aria-label="Allergen information">i</button>
+                            </div>
+                        </div>
+
+                        <!-- Grilled Halloumi Salad -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="v gf">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Grilled Halloumi Salad</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="17" data-price-uk="13">17</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">Charred halloumi, pomegranate, toasted walnut, sumac dressing.</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">V</span>
+                                <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">GF</span>
+                                <button class="allergen-info-btn text-[10px] font-label tracking-wider border border-stone-300 text-stone-400 w-5 h-5 rounded-full hover:border-secondary hover:text-secondary transition-colors inline-flex items-center justify-center" data-dish="Grilled Halloumi Salad" data-allergens="Milk, Nuts" aria-label="Allergen information">i</button>
+                            </div>
+                        </div>
+
+                        <!-- Pan-Seared Sea Bass -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="gf">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Pan-Seared Sea Bass</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="28" data-price-uk="22">28</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">Line-caught bass, saffron-braised fennel, green olive tapenade.</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">GF</span>
+                                <button class="allergen-info-btn text-[10px] font-label tracking-wider border border-stone-300 text-stone-400 w-5 h-5 rounded-full hover:border-secondary hover:text-secondary transition-colors inline-flex items-center justify-center" data-dish="Pan-Seared Sea Bass" data-allergens="Fish" aria-label="Allergen information">i</button>
+                            </div>
+                        </div>
+
+                        <!-- Aurelia Burger -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Aurelia Burger</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="24" data-price-uk="19">24</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">Dry-aged chuck blend, smoked gouda, caramelised onion, truffle aioli, brioche.</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <button class="allergen-info-btn text-[10px] font-label tracking-wider border border-stone-300 text-stone-400 w-5 h-5 rounded-full hover:border-secondary hover:text-secondary transition-colors inline-flex items-center justify-center" data-dish="Aurelia Burger" data-allergens="Gluten, Milk, Eggs" aria-label="Allergen information">i</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sides -->
+            <div class="space-y-12 mb-16">
+                <h3 class="font-label text-xs uppercase tracking-[0.4em] text-secondary border-b border-outline-variant/30 pb-4 inline-block font-bold">Sides</h3>
+                <div class="grid sm:grid-cols-3 gap-10">
+                    <!-- Truffle Fries -->
+                    <div class="menu-item-row group transition-opacity duration-300" data-dietary="v vg gf df">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Truffle Fries</h4>
+                            <span class="font-body text-sm text-primary" data-price-us="8" data-price-uk="6">8</span>
+                        </div>
+                        <div class="flex items-center gap-2 mt-2">
+                            <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">V</span>
+                            <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">VG</span>
+                            <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">GF</span>
+                            <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">DF</span>
+                            <button class="allergen-info-btn text-[10px] font-label tracking-wider border border-stone-300 text-stone-400 w-5 h-5 rounded-full hover:border-secondary hover:text-secondary transition-colors inline-flex items-center justify-center" data-dish="Truffle Fries" data-allergens="No major allergens" aria-label="Allergen information">i</button>
+                        </div>
+                    </div>
+
+                    <!-- Seasonal Greens -->
+                    <div class="menu-item-row group transition-opacity duration-300" data-dietary="v vg gf df">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Seasonal Greens</h4>
+                            <span class="font-body text-sm text-primary" data-price-us="7" data-price-uk="5.50">7</span>
+                        </div>
+                        <div class="flex items-center gap-2 mt-2">
+                            <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">V</span>
+                            <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">VG</span>
+                            <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">GF</span>
+                            <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">DF</span>
+                            <button class="allergen-info-btn text-[10px] font-label tracking-wider border border-stone-300 text-stone-400 w-5 h-5 rounded-full hover:border-secondary hover:text-secondary transition-colors inline-flex items-center justify-center" data-dish="Seasonal Greens" data-allergens="No major allergens" aria-label="Allergen information">i</button>
+                        </div>
+                    </div>
+
+                    <!-- Garlic Naan -->
+                    <div class="menu-item-row group transition-opacity duration-300" data-dietary="v">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Garlic Naan</h4>
+                            <span class="font-body text-sm text-primary" data-price-us="5" data-price-uk="4">5</span>
+                        </div>
+                        <div class="flex items-center gap-2 mt-2">
+                            <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">V</span>
+                            <button class="allergen-info-btn text-[10px] font-label tracking-wider border border-stone-300 text-stone-400 w-5 h-5 rounded-full hover:border-secondary hover:text-secondary transition-colors inline-flex items-center justify-center" data-dish="Garlic Naan" data-allergens="Gluten, Milk" aria-label="Allergen information">i</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Locale notes -->
+            <p class="service-charge-uk hidden text-xs text-primary/60 mt-12 italic">A discretionary service charge of 12.5% will be added to your bill.</p>
+            <p class="gratuity-us text-xs text-primary/60 mt-12 italic">Gratuity not included.</p>
+        </div>
+
+        <!-- ======================== DINNER ======================== -->
+        <div id="tab-dinner" class="menu-tab-panel hidden">
+            <div class="grid lg:grid-cols-2 gap-x-32 gap-y-8">
+                <!-- Left Column - Starters -->
+                <div class="space-y-12 mb-16">
+                    <h3 class="font-label text-xs uppercase tracking-[0.4em] text-secondary border-b border-outline-variant/30 pb-4 inline-block font-bold">Starters</h3>
+                    <div class="space-y-10">
+                        <!-- Dynamite Prawns -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="gf">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Dynamite Prawns</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="24" data-price-uk="19">24</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">Jumbo tiger prawns, spiced tempura, honey-sriracha emulsion, toasted sesame.</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">GF</span>
+                                <button class="allergen-info-btn text-[10px] font-label tracking-wider border border-stone-300 text-stone-400 w-5 h-5 rounded-full hover:border-secondary hover:text-secondary transition-colors inline-flex items-center justify-center" data-dish="Dynamite Prawns" data-allergens="Crustaceans, Sesame, Gluten" aria-label="Allergen information">i</button>
+                            </div>
+                        </div>
+
+                        <!-- Beef Carpaccio -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="gf">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Beef Carpaccio</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="22" data-price-uk="17">22</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">Hand-sliced Wagyu sirloin, truffle oil, capers, Parmigiano, wild rocket.</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">GF</span>
+                                <button class="allergen-info-btn text-[10px] font-label tracking-wider border border-stone-300 text-stone-400 w-5 h-5 rounded-full hover:border-secondary hover:text-secondary transition-colors inline-flex items-center justify-center" data-dish="Beef Carpaccio" data-allergens="Milk" aria-label="Allergen information">i</button>
+                            </div>
+                        </div>
+
+                        <!-- Duck Samosa -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Duck Samosa</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="18" data-price-uk="14">18</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">Confit duck, tamarind glaze, pickled red onion, coriander.</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <button class="allergen-info-btn text-[10px] font-label tracking-wider border border-stone-300 text-stone-400 w-5 h-5 rounded-full hover:border-secondary hover:text-secondary transition-colors inline-flex items-center justify-center" data-dish="Duck Samosa" data-allergens="Gluten" aria-label="Allergen information">i</button>
+                            </div>
+                        </div>
+
+                        <!-- Burrata & Heritage Tomato -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="v gf">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Burrata & Heritage Tomato</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="20" data-price-uk="16">20</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">Pugliese burrata, vine-ripened heirlooms, basil oil, aged balsamic.</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">V</span>
+                                <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">GF</span>
+                                <button class="allergen-info-btn text-[10px] font-label tracking-wider border border-stone-300 text-stone-400 w-5 h-5 rounded-full hover:border-secondary hover:text-secondary transition-colors inline-flex items-center justify-center" data-dish="Burrata & Heritage Tomato" data-allergens="Milk" aria-label="Allergen information">i</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Mains -->
+                <div class="space-y-12 mb-16">
+                    <h3 class="font-label text-xs uppercase tracking-[0.4em] text-secondary border-b border-outline-variant/30 pb-4 inline-block font-bold">Mains</h3>
+                    <div class="space-y-10">
+                        <!-- Dijon Beef Steak -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="gf">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Dijon Beef Steak</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="48" data-price-uk="38">48</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">Prime 8oz Angus fillet, dry-aged 28 days, Dijon crust, truffle pomme purée, oak-charred.</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">GF</span>
+                                <button class="allergen-info-btn text-[10px] font-label tracking-wider border border-stone-300 text-stone-400 w-5 h-5 rounded-full hover:border-secondary hover:text-secondary transition-colors inline-flex items-center justify-center" data-dish="Dijon Beef Steak" data-allergens="Milk, Mustard" aria-label="Allergen information">i</button>
+                            </div>
+                        </div>
+
+                        <!-- Mediterranean Baked Snapper -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="gf">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Mediterranean Baked Snapper</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="36" data-price-uk="28">36</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">Wild-caught snapper, saffron infusion, citrus herb salsa, pearl couscous.</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">GF</span>
+                                <button class="allergen-info-btn text-[10px] font-label tracking-wider border border-stone-300 text-stone-400 w-5 h-5 rounded-full hover:border-secondary hover:text-secondary transition-colors inline-flex items-center justify-center" data-dish="Mediterranean Baked Snapper" data-allergens="Fish" aria-label="Allergen information">i</button>
+                            </div>
+                        </div>
+
+                        <!-- Morocco Spicy Chicken -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Morocco Spicy Chicken</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="32" data-price-uk="25">32</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">Harissa-marinated breast, pomegranate reduction, smoked chickpea mash, mint oil.</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <button class="allergen-info-btn text-[10px] font-label tracking-wider border border-stone-300 text-stone-400 w-5 h-5 rounded-full hover:border-secondary hover:text-secondary transition-colors inline-flex items-center justify-center" data-dish="Morocco Spicy Chicken" data-allergens="Sesame" aria-label="Allergen information">i</button>
+                            </div>
+                        </div>
+
+                        <!-- Lamb Shank Nihari -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="gf df">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Lamb Shank Nihari</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="38" data-price-uk="30">38</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">Slow-braised twelve hours in bone marrow and whole spices, hand-pulled naan.</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">GF</span>
+                                <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">DF</span>
+                                <button class="allergen-info-btn text-[10px] font-label tracking-wider border border-stone-300 text-stone-400 w-5 h-5 rounded-full hover:border-secondary hover:text-secondary transition-colors inline-flex items-center justify-center" data-dish="Lamb Shank Nihari" data-allergens="Gluten" aria-label="Allergen information">i</button>
+                            </div>
+                        </div>
+
+                        <!-- Wild Mushroom Risotto -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="v gf">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Wild Mushroom Risotto</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="28" data-price-uk="22">28</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">Arborio rice, porcini, chanterelle, aged Parmigiano, truffle oil.</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">V</span>
+                                <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">GF</span>
+                                <button class="allergen-info-btn text-[10px] font-label tracking-wider border border-stone-300 text-stone-400 w-5 h-5 rounded-full hover:border-secondary hover:text-secondary transition-colors inline-flex items-center justify-center" data-dish="Wild Mushroom Risotto" data-allergens="Milk" aria-label="Allergen information">i</button>
+                            </div>
+                        </div>
+
+                        <!-- Lobster Thermidor -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Lobster Thermidor</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="62" data-price-uk="48">62</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">Whole Atlantic lobster, cognac cream, gruyère gratin, saffron rice.</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <button class="allergen-info-btn text-[10px] font-label tracking-wider border border-stone-300 text-stone-400 w-5 h-5 rounded-full hover:border-secondary hover:text-secondary transition-colors inline-flex items-center justify-center" data-dish="Lobster Thermidor" data-allergens="Crustaceans, Milk, Gluten" aria-label="Allergen information">i</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Locale notes -->
+            <p class="service-charge-uk hidden text-xs text-primary/60 mt-12 italic">A discretionary service charge of 12.5% will be added to your bill.</p>
+            <p class="gratuity-us text-xs text-primary/60 mt-12 italic">Gratuity not included.</p>
+        </div>
+
+        <!-- ======================== DRINKS ======================== -->
+        <div id="tab-drinks" class="menu-tab-panel hidden">
+            <div class="grid lg:grid-cols-2 gap-x-32 gap-y-8">
+                <!-- Left Column - Signature Cocktails -->
+                <div class="space-y-12 mb-16">
+                    <h3 class="font-label text-xs uppercase tracking-[0.4em] text-secondary border-b border-outline-variant/30 pb-4 inline-block font-bold">Signature Cocktails</h3>
+                    <div class="space-y-10">
+                        <!-- The Aurelia Sour -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">The Aurelia Sour</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="18" data-price-uk="14">18</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">Bourbon, saffron syrup, lemon, egg white foam, Angostura.</p>
+                        </div>
+
+                        <!-- Saffron Spritz -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Saffron Spritz</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="16" data-price-uk="12">16</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">Prosecco, saffron-infused Aperol, soda, orange twist.</p>
+                        </div>
+
+                        <!-- Ember Old Fashioned -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Ember Old Fashioned</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="20" data-price-uk="16">20</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">Smoked rye whiskey, demerara, orange bitters, flamed peel.</p>
+                        </div>
+
+                        <!-- Rose & Cardamom Fizz -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Rose & Cardamom Fizz</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="16" data-price-uk="12">16</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">Gin, rosewater, cardamom tincture, elderflower, champagne top.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Wine -->
+                <div class="space-y-12 mb-16">
+                    <h3 class="font-label text-xs uppercase tracking-[0.4em] text-secondary border-b border-outline-variant/30 pb-4 inline-block font-bold">Wine — Selected</h3>
+                    <p class="font-body text-sm text-primary/60 italic mb-8">Ask our sommelier for the full cellar list.</p>
+                    <div class="space-y-10">
+                        <!-- Sancerre -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Sancerre, Loire Valley</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="14" data-price-uk="11">14 <span class="text-primary/50">glass</span> · 56 <span class="text-primary/50">bottle</span></span>
+                            </div>
+                        </div>
+
+                        <!-- Pouilly-Fuissé -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Pouilly-Fuissé, Burgundy</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="16" data-price-uk="12">16 <span class="text-primary/50">glass</span> · 64 <span class="text-primary/50">bottle</span></span>
+                            </div>
+                        </div>
+
+                        <!-- Barolo -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Barolo, Piedmont</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="18" data-price-uk="14">18 <span class="text-primary/50">glass</span> · 72 <span class="text-primary/50">bottle</span></span>
+                            </div>
+                        </div>
+
+                        <!-- Châteauneuf-du-Pape -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Châteauneuf-du-Pape</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="16" data-price-uk="12">16 <span class="text-primary/50">glass</span> · 64 <span class="text-primary/50">bottle</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Non-Alcoholic -->
+            <div class="space-y-12 mb-16">
+                <h3 class="font-label text-xs uppercase tracking-[0.4em] text-secondary border-b border-outline-variant/30 pb-4 inline-block font-bold">Non-Alcoholic</h3>
+                <div class="grid sm:grid-cols-3 gap-10">
+                    <!-- Spiced Mango Lassi -->
+                    <div class="menu-item-row group transition-opacity duration-300" data-dietary="">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Spiced Mango Lassi</h4>
+                            <span class="font-body text-sm text-primary" data-price-us="8" data-price-uk="6">8</span>
+                        </div>
+                    </div>
+
+                    <!-- Rosewater Lemonade -->
+                    <div class="menu-item-row group transition-opacity duration-300" data-dietary="">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Rosewater Lemonade</h4>
+                            <span class="font-body text-sm text-primary" data-price-us="7" data-price-uk="5.50">7</span>
+                        </div>
+                    </div>
+
+                    <!-- Masala Chai -->
+                    <div class="menu-item-row group transition-opacity duration-300" data-dietary="">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Masala Chai</h4>
+                            <span class="font-body text-sm text-primary" data-price-us="6" data-price-uk="4.50">6</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======================== DESSERTS ======================== -->
+        <div id="tab-desserts" class="menu-tab-panel hidden">
+            <div class="max-w-2xl mx-auto">
+                <div class="space-y-12 mb-16">
+                    <h3 class="font-label text-xs uppercase tracking-[0.4em] text-secondary border-b border-outline-variant/30 pb-4 inline-block font-bold">Desserts</h3>
+                    <div class="space-y-10">
+                        <!-- Spiced Chocolate Ganache -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="gf">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Spiced Chocolate Ganache</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="16" data-price-uk="12">16</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">70% Valrhona dark chocolate, cardamom cream, pistachio praline.</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">GF</span>
+                                <button class="allergen-info-btn text-[10px] font-label tracking-wider border border-stone-300 text-stone-400 w-5 h-5 rounded-full hover:border-secondary hover:text-secondary transition-colors inline-flex items-center justify-center" data-dish="Spiced Chocolate Ganache" data-allergens="Milk, Nuts" aria-label="Allergen information">i</button>
+                            </div>
+                        </div>
+
+                        <!-- Saffron Crème Brûlée -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="v gf">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Saffron Crème Brûlée</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="14" data-price-uk="11">14</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">Persian saffron custard, caramelised sugar, rosewater shortbread.</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">V</span>
+                                <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">GF</span>
+                                <button class="allergen-info-btn text-[10px] font-label tracking-wider border border-stone-300 text-stone-400 w-5 h-5 rounded-full hover:border-secondary hover:text-secondary transition-colors inline-flex items-center justify-center" data-dish="Saffron Crème Brûlée" data-allergens="Milk, Eggs, Gluten" aria-label="Allergen information">i</button>
+                            </div>
+                        </div>
+
+                        <!-- Gulab Jamun Trio -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="v">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Gulab Jamun Trio</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="12" data-price-uk="9">12</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">Traditional milk dumplings, rose syrup, vanilla bean ice cream.</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">V</span>
+                                <button class="allergen-info-btn text-[10px] font-label tracking-wider border border-stone-300 text-stone-400 w-5 h-5 rounded-full hover:border-secondary hover:text-secondary transition-colors inline-flex items-center justify-center" data-dish="Gulab Jamun Trio" data-allergens="Milk, Gluten" aria-label="Allergen information">i</button>
+                            </div>
+                        </div>
+
+                        <!-- Passion Fruit Panna Cotta -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="gf">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Passion Fruit Panna Cotta</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="14" data-price-uk="11">14</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">Coconut panna cotta, passion fruit coulis, mango sorbet.</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">GF</span>
+                                <button class="allergen-info-btn text-[10px] font-label tracking-wider border border-stone-300 text-stone-400 w-5 h-5 rounded-full hover:border-secondary hover:text-secondary transition-colors inline-flex items-center justify-center" data-dish="Passion Fruit Panna Cotta" data-allergens="Milk" aria-label="Allergen information">i</button>
+                            </div>
+                        </div>
+
+                        <!-- Cheese Selection -->
+                        <div class="menu-item-row group transition-opacity duration-300" data-dietary="v gf">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Cheese Selection</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="22" data-price-uk="17">22</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">Five British and European cheeses, quince paste, oat crackers, honeycomb.</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">V</span>
+                                <span class="text-[10px] font-label tracking-wider uppercase border border-secondary/40 text-secondary px-2 py-0.5">GF</span>
+                                <button class="allergen-info-btn text-[10px] font-label tracking-wider border border-stone-300 text-stone-400 w-5 h-5 rounded-full hover:border-secondary hover:text-secondary transition-colors inline-flex items-center justify-center" data-dish="Cheese Selection" data-allergens="Milk, Gluten" aria-label="Allergen information">i</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======================== SEASONAL ======================== -->
+        <div id="tab-seasonal" class="menu-tab-panel hidden">
+            <div class="max-w-2xl mx-auto text-center py-20">
+                <span class="material-symbols-outlined text-secondary text-5xl mb-8">eco</span>
+                <h3 class="font-headline text-3xl mb-6 italic">Guided by the Season</h3>
+                <p class="font-body text-primary text-lg font-light leading-relaxed mb-8">Our seasonal menu changes with the finest available produce. Please ask your server for this evening's selection.</p>
+                <div class="w-24 h-[1px] bg-secondary/30 mx-auto mb-8"></div>
+                <p class="font-body text-primary/60 text-sm">The Chef's Tasting Menu is available nightly — seven courses with optional wine pairing. Please inquire when booking.</p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- CTA Band -->
+    <section class="py-24 px-6 md:px-12 bg-[#1f1f1c] text-center">
+        <h2 class="font-headline text-3xl md:text-5xl text-white mb-4 font-light">Ready to dine?</h2>
+        <p class="font-body text-white/60 mb-12">Reserve your table and experience the menu firsthand.</p>
+        <a href="reservations.html" class="bg-secondary text-on-secondary px-10 py-4 text-xs uppercase tracking-[0.3em] font-bold hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-500 inline-block">Book a Table</a>
+    </section>
+
+    <!-- Allergen Modal -->
+    <div id="allergen-modal" class="modal-backdrop fixed inset-0 bg-black/60 z-[80] items-center justify-center p-4 hidden">
+        <div class="bg-[#1f1f1c] max-w-md w-full p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="font-label text-sm font-medium uppercase tracking-widest modal-dish-name">Dish</h3>
+                <button class="modal-close material-symbols-outlined text-[#908878] hover:text-[#e8e4dc] transition-colors" aria-label="Close">close</button>
+            </div>
+            <p class="text-xs text-[#908878] mb-4 uppercase tracking-wider">Contains the following allergens:</p>
+            <ul class="modal-allergen-list"></ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-surface-container-low">
+        <div class="max-w-screen-2xl mx-auto px-6 md:px-12 py-20">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+                <!-- Brand -->
+                <div>
+                    <a class="text-2xl font-light font-headline tracking-tight text-on-surface" href="index.html">Aurelia</a>
+                    <p class="font-body text-sm text-primary/70 mt-4 leading-relaxed">South Asian-Continental fusion fine dining. A celebration of flavour, craft, and crossing borders.</p>
+                    <div class="flex gap-4 mt-6">
+                        <a href="#" class="text-primary hover:text-secondary transition-colors" aria-label="Instagram">
+                            <span class="material-symbols-outlined">photo_camera</span>
+                        </a>
+                        <a href="#" class="text-primary hover:text-secondary transition-colors" aria-label="Facebook">
+                            <span class="material-symbols-outlined">group</span>
+                        </a>
+                        <a href="#" class="text-primary hover:text-secondary transition-colors" aria-label="Twitter">
+                            <span class="material-symbols-outlined">alternate_email</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Explore -->
+                <div>
+                    <h4 class="font-label text-xs uppercase tracking-[0.3em] font-bold text-on-surface mb-6">Explore</h4>
+                    <ul class="space-y-3">
+                        <li><a href="menu.html" class="font-body text-sm text-primary hover:text-secondary transition-colors duration-300">Menu</a></li>
+                        <li><a href="reservations.html" class="font-body text-sm text-primary hover:text-secondary transition-colors duration-300">Reservations</a></li>
+                        <li><a href="private-dining.html" class="font-body text-sm text-primary hover:text-secondary transition-colors duration-300">Private Dining</a></li>
+                        <li><a href="about.html" class="font-body text-sm text-primary hover:text-secondary transition-colors duration-300">About</a></li>
+                        <li><a href="gallery.html" class="font-body text-sm text-primary hover:text-secondary transition-colors duration-300">Gallery</a></li>
+                        <li><a href="contact.html" class="font-body text-sm text-primary hover:text-secondary transition-colors duration-300">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Journal / Newsletter -->
+                <div>
+                    <h4 class="font-label text-xs uppercase tracking-[0.3em] font-bold text-on-surface mb-6">Journal</h4>
+                    <p class="font-body text-sm text-primary/70 mb-4 leading-relaxed">Subscribe for seasonal menus, chef's notes, and exclusive events.</p>
+                    <form class="flex gap-2" onsubmit="return false;">
+                        <input type="email" placeholder="Email address" class="flex-1 bg-surface-container-high border-0 px-4 py-2.5 text-sm font-body text-on-surface placeholder:text-primary/40 focus:ring-1 focus:ring-secondary"/>
+                        <button type="submit" class="bg-secondary text-on-secondary px-4 py-2.5 text-[10px] uppercase tracking-widest font-bold hover:bg-secondary/90 transition-colors">Join</button>
+                    </form>
+                </div>
+
+                <!-- Locale -->
+                <div>
+                    <h4 class="font-label text-xs uppercase tracking-[0.3em] font-bold text-on-surface mb-6">Locale</h4>
+                    <div class="flex gap-2">
+                        <button class="locale-btn border border-outline-variant px-4 py-2 text-[10px] uppercase tracking-widest font-bold text-on-surface hover:border-secondary hover:text-secondary transition-all duration-300 active" data-locale="us">
+                            <span class="mr-1">🇺🇸</span> USD
+                        </button>
+                        <button class="locale-btn border border-outline-variant px-4 py-2 text-[10px] uppercase tracking-widest font-bold text-on-surface hover:border-secondary hover:text-secondary transition-all duration-300" data-locale="uk">
+                            <span class="mr-1">🇬🇧</span> GBP
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="border-t border-outline-variant/20">
+            <div class="max-w-screen-2xl mx-auto px-6 md:px-12 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="font-body text-xs text-primary/50">&copy; 2026 Aurelia. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="font-body text-xs text-primary/50 hover:text-secondary transition-colors">Privacy Policy</a>
+                    <a href="#" class="font-body text-xs text-primary/50 hover:text-secondary transition-colors">Terms of Service</a>
+                    <a href="#" class="font-body text-xs text-primary/50 hover:text-secondary transition-colors">Accessibility</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Bottom Nav -->
+    <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-6 pb-safe pt-3 lg:hidden bg-background/90 backdrop-blur-xl shadow-[0_-4px_20px_rgba(28,28,25,0.04)] border-t border-outline-variant/20">
+        <a class="flex flex-col items-center justify-center text-secondary scale-110" href="menu.html">
+            <span class="material-symbols-outlined">restaurant_menu</span>
+            <span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Menu</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-primary" href="reservations.html">
+            <span class="material-symbols-outlined">calendar_today</span>
+            <span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Reserve</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-primary" href="gallery.html">
+            <span class="material-symbols-outlined">collections</span>
+            <span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Gallery</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-primary" href="contact.html">
+            <span class="material-symbols-outlined">location_on</span>
+            <span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Contact</span>
+        </a>
+    </nav>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

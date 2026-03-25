@@ -1,0 +1,153 @@
+/* ==========================================================================
+   AURELIA — Design Tokens
+   Premium restaurant website for US & UK audiences
+   ========================================================================== */
+
+:root {
+  /* -----------------------------------------------------------------------
+     Colors
+     ----------------------------------------------------------------------- */
+  --color-obsidian:        #1A1A1A;
+  --color-charcoal:        #2D2D2D;
+  --color-gold:            #C5935A;
+  --color-gold-light:      #E8C580;
+  --color-ivory:           #F5F0E8;
+  --color-stone:           #B8AFA6;
+  --color-ember:           #8B2E2E;
+  --color-parchment:       #FAFAF7;
+
+  /* Semantic aliases */
+  --bg-dark:               var(--color-obsidian);
+  --bg-dark-alt:           var(--color-charcoal);
+  --bg-light:              var(--color-ivory);
+  --bg-white:              var(--color-parchment);
+  --text-primary:          var(--color-parchment);
+  --text-dark:             var(--color-obsidian);
+  --text-muted:            var(--color-stone);
+  --accent:                var(--color-gold);
+  --accent-light:          var(--color-gold-light);
+  --accent-danger:         var(--color-ember);
+
+  /* -----------------------------------------------------------------------
+     Typography
+     ----------------------------------------------------------------------- */
+  --font-display:          'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans:             'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-body:             'Source Serif 4', 'Georgia', serif;
+  --font-mono:             'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+
+  /* Type scale — mobile-first (375px base) */
+  --text-h1:               clamp(2.5rem, 5vw + 1rem, 6rem);
+  --text-h2:               clamp(2rem, 3vw + 0.5rem, 3.5rem);
+  --text-h3:               clamp(1.25rem, 1.5vw + 0.5rem, 2rem);
+  --text-body:             clamp(1rem, 0.5vw + 0.875rem, 1.125rem);
+  --text-nav:              0.8125rem;
+  --text-caption:          0.8125rem;
+  --text-button:           0.875rem;
+  --text-price:            1rem;
+
+  /* Line heights */
+  --leading-tight:         1.1;
+  --leading-heading:       1.2;
+  --leading-body:          1.7;
+  --leading-loose:         1.9;
+
+  /* Letter spacing */
+  --tracking-tight:        -0.02em;
+  --tracking-normal:       0em;
+  --tracking-wide:         0.08em;
+  --tracking-wider:        0.12em;
+
+  /* Font weights */
+  --weight-regular:        400;
+  --weight-medium:         500;
+
+  /* -----------------------------------------------------------------------
+     Spacing
+     ----------------------------------------------------------------------- */
+  --space-xs:              0.5rem;    /*  8px */
+  --space-sm:              1rem;      /* 16px */
+  --space-md:              1.5rem;    /* 24px */
+  --space-lg:              2rem;      /* 32px */
+  --space-xl:              3rem;      /* 48px */
+  --space-2xl:             4rem;      /* 64px */
+  --space-3xl:             5rem;      /* 80px */
+  --space-4xl:             8rem;      /* 128px */
+  --space-5xl:             10rem;     /* 160px */
+
+  /* Section padding (vertical) */
+  --section-padding:       var(--space-2xl);
+  --section-padding-lg:    var(--space-5xl);
+
+  /* -----------------------------------------------------------------------
+     Layout
+     ----------------------------------------------------------------------- */
+  --max-width:             75rem;     /* 1200px */
+  --max-width-text:        45rem;     /* 720px */
+  --grid-columns:          12;
+  --grid-gutter:           1.5rem;    /* 24px */
+  --side-margin:           1.25rem;   /* 20px mobile */
+
+  /* -----------------------------------------------------------------------
+     Borders & Radii
+     ----------------------------------------------------------------------- */
+  --border-hairline:       1px solid rgba(197, 147, 90, 0.2);
+  --border-gold:           1px solid var(--color-gold);
+  --radius-sm:             4px;
+  --radius-md:             8px;
+
+  /* -----------------------------------------------------------------------
+     Shadows
+     ----------------------------------------------------------------------- */
+  --shadow-subtle:         0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-card:           0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-elevated:       0 8px 32px rgba(0, 0, 0, 0.12);
+
+  /* -----------------------------------------------------------------------
+     Transitions & Motion
+     ----------------------------------------------------------------------- */
+  --ease-out:              cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-in-out:           cubic-bezier(0.42, 0, 0.58, 1);
+  --duration-fast:         200ms;
+  --duration-normal:       350ms;
+  --duration-slow:         600ms;
+  --duration-reveal:       800ms;
+
+  /* -----------------------------------------------------------------------
+     Z-Index Scale
+     ----------------------------------------------------------------------- */
+  --z-base:                1;
+  --z-overlay:             100;
+  --z-header:              200;
+  --z-mobile-menu:         300;
+  --z-modal:               400;
+  --z-mobile-bar:          250;
+}
+
+/* =========================================================================
+   Responsive token overrides
+   ========================================================================= */
+
+/* Tablet (768px+) */
+@media (min-width: 48rem) {
+  :root {
+    --grid-gutter:         2rem;
+    --side-margin:         2.5rem;
+    --section-padding:     var(--space-3xl);
+  }
+}
+
+/* Desktop (1024px+) */
+@media (min-width: 64rem) {
+  :root {
+    --side-margin:         3rem;
+    --section-padding:     var(--space-4xl);
+  }
+}
+
+/* Large desktop (1440px+) */
+@media (min-width: 90rem) {
+  :root {
+    --side-margin:         auto;
+  }
+}

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html class="light scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Aurelia | Where Spice Meets Refinement</title>
+    <meta name="description" content="Aurelia — South Asian-Continental fusion fine dining. A modern approach to luxury hospitality where bold spice meets refined technique."/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-surface": "#e8e4dc",
+                        "secondary": "#c9a84c",
+                        "on-secondary": "#1a1400",
+                        "on-secondary-container": "#c9a84c",
+                        "secondary-container": "#3a2c00",
+                        "outline": "#504935",
+                        "outline-variant": "#2c2920",
+                        "surface": "#111110",
+                        "surface-container": "#191917",
+                        "surface-container-low": "#151513",
+                        "surface-container-high": "#1f1f1c",
+                        "surface-container-highest": "#262623",
+                        "on-background": "#e8e4dc",
+                        "inverse-surface": "#e8e4dc",
+                        "primary": "#908878",
+                        "background": "#0d0d0b",
+                    },
+                    fontFamily: {
+                        "headline": ["Noto Serif", "serif"],
+                        "body": ["Manrope", "sans-serif"],
+                        "label": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+        }
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s cubic-bezier(0.25,0.1,0.25,1), transform 0.8s cubic-bezier(0.25,0.1,0.25,1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        body::after { content: ''; position: fixed; inset: 0; z-index: 9998; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E"); opacity: 0.025; mix-blend-mode: overlay; }
+        input, select, textarea { color-scheme: dark; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-secondary/20 selection:text-secondary">
+
+    <!-- Skip to Content -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-secondary focus:text-white focus:px-4 focus:py-2 focus:text-xs focus:tracking-widest focus:uppercase">Skip to Content</a>
+
+    <!-- Top Navigation -->
+    <nav id="site-header" class="fixed top-0 w-full z-50 bg-[#0d0d0b]/90 backdrop-blur-md transition-all duration-500">
+        <div class="flex justify-between items-center px-6 md:px-12 py-6 w-full max-w-screen-2xl mx-auto">
+            <div class="hidden lg:flex gap-8 items-center">
+                <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="menu.html">Menu</a>
+                <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="reservations.html">Reservations</a>
+                <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="private-dining.html">Private Dining</a>
+            </div>
+            <a class="text-3xl font-light font-headline tracking-tight text-on-surface" href="index.html">Aurelia</a>
+            <div class="flex gap-8 items-center">
+                <div class="hidden lg:flex gap-8 items-center">
+                    <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="about.html">About</a>
+                    <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="gallery.html">Gallery</a>
+                    <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="contact.html">Contact</a>
+                </div>
+                <a href="reservations.html" class="bg-secondary text-on-secondary px-6 py-2.5 text-[10px] uppercase tracking-[0.2em] font-bold transition-all duration-500 hover:bg-secondary/90">Book a Table</a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content">
+
+        <!-- Section 1: Hero -->
+        <section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img alt="Aurelia restaurant interior with golden ambient lighting and elegant decor" class="w-full h-full object-cover brightness-75 scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBM9ntBhD6X1EejfTyVOrseavusD-1Vy1vcHuN2zUmc73DDawuazxVynFd03yPv6HjPrP36vacRZFeShtbtN04tnpYsdE4-PUkh9OZLOz-hzJ_lf3IvG4Y1aXbGkGaMQQLmOTsiMMV6K1YiauNEDbDecjZ2l-zV-_o-SmYCzwYtXdKwga3EPYxIeHYr8SMwrKKogbE5eK5LMecHOxcuyKDhQ5Os0LVStwuEQeFolqieQh9casjZBiOMB7uAgaTOe1cKeuOO0HEP47o"/>
+                <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-background"></div>
+            </div>
+            <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+                <h1 class="font-headline text-5xl md:text-8xl text-white mb-6 tracking-tight font-light leading-none">Where Spice Meets Refinement</h1>
+                <p class="font-body text-white/90 text-lg md:text-xl font-light tracking-wide mb-12 max-w-2xl mx-auto italic">South Asian fire. Continental precision. A singular dining experience.</p>
+                <div class="flex flex-col md:flex-row gap-6 justify-center items-center">
+                    <a href="reservations.html" class="bg-secondary text-on-secondary px-10 py-4 text-xs uppercase tracking-[0.3em] font-bold hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-500 w-full md:w-auto">Book a Table</a>
+                    <a href="menu.html" class="border border-white/30 text-white px-10 py-4 text-xs uppercase tracking-[0.3em] font-bold backdrop-blur-sm hover:bg-white hover:text-on-background transition-all duration-500 w-full md:w-auto">View Menu</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Intro Statement -->
+        <section class="py-32 px-6 md:px-12 bg-background">
+            <div class="max-w-4xl mx-auto text-center reveal">
+                <p class="font-headline text-3xl md:text-4xl leading-relaxed italic text-on-surface/90 font-light">
+                    Born from the fire of South Asian tradition and the precision of Continental craft, Aurelia is a dialogue between two worlds. Every plate is a curated expression of heritage, reimagined for the contemporary palate.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 3: Signature Dishes -->
+        <section class="py-32 px-6 md:px-12 bg-background overflow-hidden">
+            <div class="max-w-screen-2xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8 reveal">
+                    <div class="max-w-xl">
+                        <span class="text-secondary font-label text-xs uppercase tracking-[0.3em] mb-4 block font-bold">The Collection</span>
+                        <h2 class="font-headline text-4xl md:text-6xl text-on-background leading-tight">Signature Creations</h2>
+                    </div>
+                    <a href="menu.html" class="font-body text-primary text-sm max-w-xs pb-2 leading-relaxed italic hover:text-secondary transition-colors">Explore the full menu &rarr;</a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 reveal">
+                    <!-- Dish 1 -->
+                    <div class="group cursor-pointer">
+                        <div class="aspect-[4/5] overflow-hidden mb-6 bg-surface-container">
+                            <img alt="Dynamite Prawns with spicy aioli and microgreen garnish" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaiqPm3Q31towKF6L2ZJe4_ZQ7ayxy9XokGkPyPv_vZa8wxBmX2UyZnjWF1TbvFLJU-NsxAx1SWbdx9fGN68jsjS2P_uyRQeEh4E_mJ_VOnmlWwpFMxH_SdHuHAltnzp1JIvF1SO7LPBFNV2yBdDKHRAzGc973U1FrcOJgmVZLOxX4twV8Zd1SSKBmRHfWdm2uaJ0Ckq3vOwPd9y4paA1Mk802Q5Mfj64fOJ5BejSW-qb6Nb1oSRCI9eeEI0aeKw0Xc5Ofjdl0d0M"/>
+                        </div>
+                        <h3 class="font-headline text-2xl mb-2">Dynamite Prawns</h3>
+                        <p class="text-secondary text-xs uppercase tracking-widest font-bold">Tempura &bull; Sriracha Emulsion &bull; Sesame</p>
+                    </div>
+                    <!-- Dish 2 (offset) -->
+                    <div class="group cursor-pointer md:translate-y-12">
+                        <div class="aspect-[4/5] overflow-hidden mb-6 bg-surface-container">
+                            <img alt="Dijon Beef Steak with grain mustard glaze" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaN14r497iX7lv2K9MERWWY8czLCGbG4-deKFVWNfmFz4XpUIuYAKLMCYGWhbiYsOGR7O6nFx9jRSJBFGnYF5KnQV2_xADxKDgLr7k5uZsYE4xxCziedHKuZ2jDa0QoqmzSx4aD8lL8mvG4Lk6rWPeBAAg4xlD8rPLJvT07zCUZj7GgcEvvjM0_F_k1dlqiVlfCrI-DulejRewLszDqm_jpjQ7uDmuvgqi65rVo5bIGCGmrVTAUUaABAsaYtBegiNKJH8WBt9YsZ0"/>
+                        </div>
+                        <h3 class="font-headline text-2xl mb-2">Dijon Beef Steak</h3>
+                        <p class="text-secondary text-xs uppercase tracking-widest font-bold">Dry-aged &bull; Truffle Purée &bull; Oak-charred</p>
+                    </div>
+                    <!-- Dish 3 -->
+                    <div class="group cursor-pointer">
+                        <div class="aspect-[4/5] overflow-hidden mb-6 bg-surface-container">
+                            <img alt="Mediterranean Baked Snapper with lemon and herbs" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXPLB8EpQ3v86I8BHZwdQX8iFPCB8bpOCZyhQKd0_eDhtV2Hb55WRHtlwlmO7_hUdoP8BBhKD5evJeKYZ4Sh6Fe4gDS9UvtUxT2N2xMMj8HW4QFCF7pXUOGN_ELpvUjTKxCG_vD_OWKaMscm-izW_fB8minXH0i9kfl3HTNwiQ9zgVcz7VNXsO4MR0VTugliD4yJE42yHNQslNSKRVm1ikAknxfxyFKrHT3rr_qDK3_8WeOW-oXswJESwCjGm6RdSyJcrT_jN1pFE"/>
+                        </div>
+                        <h3 class="font-headline text-2xl mb-2">Baked Snapper</h3>
+                        <p class="text-secondary text-xs uppercase tracking-widest font-bold">Saffron &bull; Citrus Salsa &bull; Pearl Couscous</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Chef's Story -->
+        <section class="py-32 px-6 md:px-12 bg-surface-container-low">
+            <div class="max-w-screen-2xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div class="relative order-2 lg:order-1 reveal">
+                    <img alt="Chef at work in the Aurelia kitchen" class="w-full aspect-[3/4] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOkUnSj2vgDzYew3Qh_itsDZlQJnsSZWBrPzwbmz7C7tVBFb7rPfMPMbiY3TDZ6bfhPgjf3x0Tsra4xnsQW6Gw07Kx6BRpAAa3lqtyPnywZat5055wf9l_VXv3TvOf0na4NtwMSCFG9jWiEhGYNKLOy_5TIKpfyRR4JYt91XmV1QTa30t4nO48kEXuaKcn0-FXwvNMybs7Ibzq9ubx472puOv0xx0pBfJ1MDHJfqEx-HKzY0kmYt4mD0mO4o6yP-0FI2HDYGvxLsY"/>
+                    <div class="absolute -bottom-8 -right-8 bg-surface-container p-12 hidden lg:block">
+                        <p class="font-headline text-3xl italic text-on-background leading-tight">"Spice is architecture &mdash; structural, intentional, calibrated."</p>
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2 space-y-8 reveal">
+                    <span class="text-secondary font-label text-xs uppercase tracking-[0.3em] block font-bold">The Philosophy</span>
+                    <h2 class="font-headline text-4xl md:text-6xl text-on-background leading-tight">Two Traditions, One Fire</h2>
+                    <div class="font-body text-primary leading-relaxed space-y-6 text-lg font-light">
+                        <p>Aurelia was born from a conviction: that the fire and fragrance of South Asian cooking and the discipline of European technique are not opposites — they are partners. Our kitchen honours both lineages with equal reverence.</p>
+                        <p>We work directly with farms and fisheries across two continents, sourcing ingredients that carry the terroir of their origin. From morning-harvested herbs to dry-aged proteins, every element meets our standard of soul and substance.</p>
+                    </div>
+                    <a href="about.html" class="inline-flex items-center gap-2 text-secondary font-label text-xs uppercase tracking-widest font-bold border-b border-secondary/30 pb-1 hover:border-secondary transition-colors">
+                        Read Our Story
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Menu Highlights -->
+        <section class="py-32 px-6 md:px-12 bg-background">
+            <div class="max-w-screen-xl mx-auto text-center mb-24 reveal">
+                <h2 class="font-headline text-4xl md:text-6xl mb-6">Menu Highlights</h2>
+                <div class="w-24 h-[1px] bg-secondary/30 mx-auto"></div>
+            </div>
+            <div class="max-w-screen-2xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-x-32 gap-y-16 reveal">
+                <!-- Starters -->
+                <div class="space-y-12">
+                    <h3 class="font-label text-xs uppercase tracking-[0.4em] text-secondary border-b border-outline-variant/30 pb-4 inline-block font-bold" data-heading-us="Appetizers" data-heading-uk="Starters">Starters</h3>
+                    <div class="space-y-10">
+                        <div class="group">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Spiced Cauliflower Velouté</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="14" data-price-uk="11">14</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">Roasted cauliflower, toasted cumin cream, crispy curry leaves, and smoked paprika oil.</p>
+                        </div>
+                        <div class="group">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Seared Tuna Tataki</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="22" data-price-uk="17">22</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">Sesame-crusted yellowfin, wasabi ponzu, pickled ginger, and shiso leaf.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Mains -->
+                <div class="space-y-12">
+                    <h3 class="font-label text-xs uppercase tracking-[0.4em] text-secondary border-b border-outline-variant/30 pb-4 inline-block font-bold" data-heading-us="Entrées" data-heading-uk="Mains">Mains</h3>
+                    <div class="space-y-10">
+                        <div class="group">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Lamb Shank Nihari</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="38" data-price-uk="30">38</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">Slow-braised twelve hours in bone marrow and whole spices, served with hand-pulled naan.</p>
+                        </div>
+                        <div class="group">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h4 class="font-headline text-xl group-hover:text-secondary transition-colors duration-300">Mediterranean Baked Snapper</h4>
+                                <span class="font-body text-sm text-primary" data-price-us="36" data-price-uk="28">36</span>
+                            </div>
+                            <p class="font-body text-sm text-primary/70 max-w-[80%] leading-relaxed">Wild-caught snapper, saffron infusion, citrus herb salsa, and pearl couscous.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-24 text-center">
+                <a href="menu.html" class="border border-outline-variant text-on-background px-12 py-5 text-xs uppercase tracking-[0.3em] font-bold hover:bg-on-background hover:text-background transition-all duration-500 inline-block">Explore Full Menu</a>
+            </div>
+        </section>
+
+        <!-- Section 6: Press & Testimonials -->
+        <section class="py-24 bg-surface-container-high border-y border-outline-variant/10">
+            <div class="max-w-screen-2xl mx-auto px-6 md:px-12">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-12 items-center opacity-40 mb-20 reveal">
+                    <div class="text-center font-headline text-xl md:text-2xl tracking-widest uppercase">Eater</div>
+                    <div class="text-center font-headline text-xl md:text-2xl tracking-widest uppercase">Michelin</div>
+                    <div class="text-center font-headline text-xl md:text-2xl tracking-widest uppercase">The Times</div>
+                    <div class="text-center font-headline text-xl md:text-2xl tracking-widest uppercase">Vogue</div>
+                </div>
+                <div class="max-w-3xl mx-auto text-center reveal">
+                    <span class="material-symbols-outlined text-secondary text-4xl mb-6" style="font-variation-settings: 'FILL' 1;">format_quote</span>
+                    <p class="font-headline text-2xl md:text-3xl italic text-on-background leading-relaxed mb-8">"Aurelia is a masterclass in balance — the bold spices of the subcontinent tempered by the restraint of continental technique. A singular vision, flawlessly executed."</p>
+                    <p class="font-label text-xs uppercase tracking-[0.2em] font-bold text-secondary">— Eater New York</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Private Dining -->
+        <section class="py-32 px-6 md:px-12 relative overflow-hidden bg-[#1f1f1c] text-[#e8e4dc]">
+            <div class="absolute right-0 top-0 h-full w-1/3 opacity-20 hidden lg:block">
+                <img alt="Wine cellar with ambient lighting" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYZYjFfmjhAcjwztzpoPKUTKPl16m3cqLr4aQjPuAu1cXUfTIcirxf4DtX0RgDPAOB99Ov4_EJYwT4DZl7NorYMnaxdXOlmOL3nlq4MQmKOXPcsc44gjLBhVGcay23hOAPm_3tGEslUUocGCRBDdqLLv9KchCj-4ChpP9lJQCAFp2IHZ6rcM9p9T99_3l4ftR5cgzy-o7B0yJKBKdGoSNAAwTumwk_5dzQIiSZQC9NN53JP3-43dN_OxNkmX2bBseN6edu4XIhFNo"/>
+            </div>
+            <div class="max-w-screen-2xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-20">
+                <div class="space-y-8 reveal">
+                    <span class="text-secondary font-label text-xs uppercase tracking-[0.3em] block font-bold">For Gatherings That Matter</span>
+                    <h2 class="font-headline text-4xl md:text-6xl leading-tight">Private Dining</h2>
+                    <p class="font-body text-white/60 text-lg font-light leading-relaxed max-w-lg">Intimate rooms for 8 to 40 guests, with bespoke menus crafted to your occasion. From corporate entertaining to milestone celebrations.</p>
+                    <div class="flex flex-col sm:flex-row gap-6 pt-6">
+                        <a href="private-dining.html" class="bg-secondary text-on-secondary px-10 py-4 text-xs uppercase tracking-[0.3em] font-bold hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-500 text-center">Plan Your Event</a>
+                        <a href="private-dining.html#spaces" class="border border-white/20 text-white px-10 py-4 text-xs uppercase tracking-[0.3em] font-bold hover:bg-white/10 transition-all duration-500 text-center">View Rooms</a>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4 reveal">
+                    <div class="aspect-square bg-white/5 overflow-hidden">
+                        <img alt="Private dining table set with crystal glassware" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNfrb3T8MCdBojF96mpU8tgzYiWV6pcMlOd8L3s17qHZudRILSwlYAR16KTys-nlCq6jBQ4Lpf5-PBAoESWWiSVy38mmgcbP7lK9loUXqOv-2-VbuQPFgICoR-OTgaN1QtQdTCwpYJA47X8ld7Kd_732wGecLucTL6dZ7FhCMlnbR2G2DCxXwKLxYVITEBTVzX2YL1aSXmlF7aOc3RzdK5ZmGrNiCeyH7yFthEeYmqZGgdQXhySoElH79TMX0P2rUaJbYpIQ7GB20"/>
+                    </div>
+                    <div class="aspect-square bg-white/5 overflow-hidden mt-8">
+                        <img alt="Modern private event space with city views" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdjdmR4ia-qdPzOGPn7j2EFtvSZB5cF1qqLn-1mYUHL9X6KN2MReLC0-JQBPcytG5CQ_mSCkSOIqLYYbUzGMHzQ4Mtb3_HKFBup4rjZvP_A7m_kBA7OsdFDy6UkjGdjzFvwiFTlI1Crs-7J7bM6psu3DQg6RvZ-v1tEAD73cBcx64LalhwaWhLNmBbe_t0hkDfRLmtbuLGLMeW5JOYdxT0UlbIINOWecXb8Dnxhs14n7lLkQaeIx9zam4dVoqmPDHAGUCF5IeNysE"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8: Gallery Preview -->
+        <section class="py-32 bg-background">
+            <div class="max-w-screen-2xl mx-auto px-6 md:px-12">
+                <div class="flex justify-between items-center mb-16 reveal">
+                    <h2 class="font-headline text-3xl md:text-5xl">The Atmosphere</h2>
+                    <a class="text-secondary font-label text-xs uppercase tracking-widest border-b border-secondary/30 pb-1 font-bold hover:border-secondary transition-colors" href="gallery.html">View Gallery</a>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 reveal">
+                    <div class="aspect-square overflow-hidden bg-surface-container">
+                        <img alt="Craft cocktail with botanical garnish" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqME71H3Q9PfTnDH5y1Z1vpjMB0zbCxM_Xkn5hbj2MvrJo54SFhHGLME6xHwRn08FVQ6Xn7LK9M0hP57MnCoEL7tY5L_BLDxw8pNpofdVnuobn6J1Ml_zojqKWcxd8NkIT5kjbi-9wjX2thnTM99rgSsoJAGupMQ9c3I0d56MZRyTDhiXyldcandc3YWtCSBUfjRu27ctmgSTZCt4JIxJLDMKCpCsNYXc_TFEHkJ7PD3IozNyLrzO_GHdVnLNJLxFTgXzTYA39qdU"/>
+                    </div>
+                    <div class="aspect-square overflow-hidden bg-surface-container">
+                        <img alt="Dining room ambiance at night" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKzbg28YDm2q75zEBwZB_zraH_YR1mMurQYCMqqoyEFqrDZzcmOOKyXIyAojUzz1EAA95BPptSze1dk6Fo5wJm3TukBW23bwZ88aJyrwx0vriG7d1BCcZvg07n4ThLu2CSpT2z2g9OXwPOc_ahfIjiF3RSIt3Y1AZzHVgKEYhQJKpzjMkiZ4X4T4hbbODAkwsCLYnwMUAIK96oJKi3Zp71YBGcOg3fRDX-aGyuiXZUtfTs--TJpiuo-5gupHmKby9F4Cbwe7Fh3GY"/>
+                    </div>
+                    <div class="aspect-square overflow-hidden bg-surface-container">
+                        <img alt="Detail of ceramic plate with gold rim" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTHZQNq-TsDOItE8BbWZZWmjvPxNjtUoQKcnjvbvOmJyH3YlhdEN_B5MjuuxTEYW8YMdoUlPiuv6hIY1yhInxx1lpYwqQifdnmMCNUKQRAh7AKrlQ-TnuMvlsIXgye5qryNVht78BKIkIX_6imw5vjCoBMZvhAz21eMa5SBzdiIdwVxZGNY1z1Idc3IkRoeaUV0b_Aquy286I58G-IKuFrpSJasiKLHlXmbSRM-nKHgQ3-7fq737mUnsXox4F2ybpesaPekUfEwpY"/>
+                    </div>
+                    <div class="aspect-square overflow-hidden bg-surface-container">
+                        <img alt="Restaurant entrance with brass signage" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqPilUh1Gc8vSigTa3QwRqO7pXn-VBrpc7FM_5qgtKbFbME8INeeD0W8Rcd3CZ3XhURDq7RsHIHjRDSSd53gRfEgk5SGgzBGKhe63kR1MZ2kHiGMeOJ0cOCSPP2Bhf1UQC20dey_RxHIl5qak4IkySHYb3dvl7bCQJ8bxEg3omvssVk3pnpOvH-ZdchnHroyaYsfp2IZ8WSdbjznRj4LfBUqvaYWorDwWd22STYYWv8L_-eohEa-tmYj9cevLVQpzQYwqsElpahv8"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 9: Location & Hours -->
+        <section class="py-32 px-6 md:px-12 bg-surface-container-low border-t border-outline-variant/10">
+            <div class="max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-8 reveal">
+                <div class="space-y-6">
+                    <h3 class="font-label text-xs uppercase tracking-[0.3em] text-secondary font-bold">Location</h3>
+                    <div class="font-headline text-2xl text-on-background space-y-2">
+                        <p>123 West 57th Street</p>
+                        <p>New York, NY 10019</p>
+                    </div>
+                    <a class="inline-flex items-center gap-2 text-primary font-body text-sm hover:text-secondary transition-colors duration-300" href="contact.html">
+                        <span class="material-symbols-outlined text-sm">location_on</span>
+                        <span>Get Directions</span>
+                    </a>
+                </div>
+                <div class="space-y-6">
+                    <h3 class="font-label text-xs uppercase tracking-[0.3em] text-secondary font-bold">Hours</h3>
+                    <div class="font-body text-on-background space-y-3 text-sm tracking-wide">
+                        <div class="flex justify-between border-b border-outline-variant/20 pb-2">
+                            <span>Lunch: Mon &ndash; Sun</span>
+                            <span>12:00 &ndash; 15:00</span>
+                        </div>
+                        <div class="flex justify-between border-b border-outline-variant/20 pb-2">
+                            <span>Dinner: Mon &ndash; Thu</span>
+                            <span>18:00 &ndash; 22:00</span>
+                        </div>
+                        <div class="flex justify-between border-b border-outline-variant/20 pb-2">
+                            <span>Dinner: Fri &ndash; Sat</span>
+                            <span>18:00 &ndash; 23:00</span>
+                        </div>
+                        <div class="flex justify-between border-b border-outline-variant/20 pb-2">
+                            <span>Dinner: Sunday</span>
+                            <span>17:30 &ndash; 21:30</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <h3 class="font-label text-xs uppercase tracking-[0.3em] text-secondary font-bold">Contact</h3>
+                    <div class="font-headline text-2xl text-on-background space-y-2">
+                        <p><a href="tel:+12125551234" class="hover:text-secondary transition-colors">+1 (212) 555-1234</a></p>
+                        <p class="text-lg"><a href="mailto:hello@aureliarestaurant.com" class="hover:text-secondary transition-colors">hello@aureliarestaurant.com</a></p>
+                    </div>
+                    <div class="flex gap-4 pt-2">
+                        <a class="w-10 h-10 border border-outline-variant/40 flex items-center justify-center hover:bg-secondary hover:text-white transition-all duration-500" href="#" aria-label="Instagram">
+                            <span class="material-symbols-outlined text-lg">photo_camera</span>
+                        </a>
+                        <a class="w-10 h-10 border border-outline-variant/40 flex items-center justify-center hover:bg-secondary hover:text-white transition-all duration-500" href="#" aria-label="Facebook">
+                            <span class="material-symbols-outlined text-lg">public</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface-container-low w-full relative border-t border-outline-variant/10">
+        <div class="w-full px-6 md:px-12 py-20 grid grid-cols-1 md:grid-cols-4 gap-12 max-w-screen-2xl mx-auto">
+            <div class="space-y-6">
+                <a class="text-2xl font-headline font-light text-on-surface" href="index.html">Aurelia</a>
+                <p class="font-body font-light tracking-wide text-sm text-primary max-w-xs">South Asian-Continental fusion. A dialogue between two culinary worlds, served in an atmosphere of understated luxury.</p>
+            </div>
+            <div class="space-y-6">
+                <h4 class="font-label text-xs font-bold uppercase tracking-widest text-on-surface">Explore</h4>
+                <div class="flex flex-col gap-4">
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="menu.html">Menu</a>
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="about.html">About</a>
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="private-dining.html">Private Dining</a>
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="gallery.html">Gallery</a>
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="gift-cards.html">Gift Cards</a>
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="press.html">Press</a>
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="contact.html">Contact</a>
+                </div>
+            </div>
+            <div class="md:col-span-2 space-y-6">
+                <h4 class="font-label text-xs font-bold uppercase tracking-widest text-on-surface">The Journal</h4>
+                <p class="font-body font-light tracking-wide text-sm text-primary">Seasonal menus, chef's notes, and invitations to the table. Once a month.</p>
+                <form class="flex border-b border-outline-variant/40 pb-2" onsubmit="event.preventDefault(); this.querySelector('input').value=''; alert('Thank you for subscribing.');">
+                    <input class="bg-transparent border-none focus:ring-0 w-full font-body font-light text-sm text-on-surface placeholder:text-primary/50" placeholder="Your email address" type="email" required aria-label="Email address"/>
+                    <button type="submit" class="text-secondary font-label text-xs uppercase tracking-widest font-bold hover:text-on-secondary-container transition-colors">Join</button>
+                </form>
+                <div class="pt-4">
+                    <span class="font-label text-xs font-bold uppercase tracking-widest text-on-surface block mb-3">Locale</span>
+                    <div class="text-xs tracking-widest text-primary">
+                        <button class="locale-btn hover:text-secondary transition-colors active font-bold" data-locale="us">US</button>
+                        <span class="mx-1">|</span>
+                        <button class="locale-btn hover:text-secondary transition-colors" data-locale="uk">UK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-screen-2xl mx-auto px-6 md:px-12 pb-12 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="font-body font-light tracking-wide text-xs text-primary opacity-60">&copy; 2026 Aurelia Restaurant. All Rights Reserved.</p>
+            <div class="flex flex-wrap justify-center gap-6 font-body font-light text-xs text-primary/60">
+                <a class="hover:text-secondary transition-colors" href="privacy.html">Privacy</a>
+                <a class="hover:text-secondary transition-colors" href="terms.html">Terms</a>
+                <a class="hover:text-secondary transition-colors" href="allergens.html">Allergens</a>
+                <a class="hover:text-secondary transition-colors" href="cookies.html">Cookies</a>
+                <a class="hover:text-secondary transition-colors" href="accessibility.html">Accessibility</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bottom Nav Bar (Mobile) -->
+    <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-6 pb-safe pt-3 lg:hidden bg-background/90 backdrop-blur-xl shadow-[0_-4px_20px_rgba(28,28,25,0.04)] border-t border-outline-variant/20">
+        <a class="flex flex-col items-center justify-center text-primary" href="menu.html">
+            <span class="material-symbols-outlined">restaurant_menu</span>
+            <span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Menu</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-secondary scale-110" href="reservations.html">
+            <span class="material-symbols-outlined">calendar_today</span>
+            <span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Reserve</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-primary" href="gallery.html">
+            <span class="material-symbols-outlined">collections</span>
+            <span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Gallery</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-primary" href="contact.html">
+            <span class="material-symbols-outlined">location_on</span>
+            <span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Contact</span>
+        </a>
+    </nav>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html class="light scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Contact | Aurelia</title>
+    <meta name="description" content="Find Aurelia restaurant on West 57th Street, New York. Get in touch by phone, email, or visit us in person."/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-surface": "#e8e4dc",
+                        "secondary": "#c9a84c",
+                        "on-secondary": "#1a1400",
+                        "on-secondary-container": "#c9a84c",
+                        "secondary-container": "#3a2c00",
+                        "outline": "#504935",
+                        "outline-variant": "#2c2920",
+                        "surface": "#111110",
+                        "surface-container": "#191917",
+                        "surface-container-low": "#151513",
+                        "surface-container-high": "#1f1f1c",
+                        "surface-container-highest": "#262623",
+                        "on-background": "#e8e4dc",
+                        "inverse-surface": "#e8e4dc",
+                        "primary": "#908878",
+                        "background": "#0d0d0b",
+                    },
+                    fontFamily: { "headline": ["Noto Serif", "serif"], "body": ["Manrope", "sans-serif"], "label": ["Manrope", "sans-serif"] },
+                    borderRadius: { "DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s cubic-bezier(0.25,0.1,0.25,1), transform 0.8s cubic-bezier(0.25,0.1,0.25,1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+        body::after { content: ''; position: fixed; inset: 0; z-index: 9998; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E"); opacity: 0.025; mix-blend-mode: overlay; }
+        input, select, textarea { color-scheme: dark; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-secondary/20 selection:text-secondary">
+
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-secondary focus:text-on-secondary focus:px-4 focus:py-2 focus:text-xs focus:uppercase focus:tracking-widest focus:font-bold">Skip to Content</a>
+
+    <nav id="site-header" class="fixed top-0 w-full z-50 bg-[#0d0d0b]/90 backdrop-blur-md transition-all duration-500">
+        <div class="flex justify-between items-center px-6 md:px-12 py-6 w-full max-w-screen-2xl mx-auto">
+            <div class="hidden lg:flex gap-8 items-center">
+                <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="menu.html">Menu</a>
+                <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="reservations.html">Reservations</a>
+                <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="private-dining.html">Private Dining</a>
+            </div>
+            <a class="text-3xl font-light font-headline tracking-tight text-on-surface" href="index.html">Aurelia</a>
+            <div class="flex gap-8 items-center">
+                <div class="hidden lg:flex gap-8 items-center">
+                    <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="about.html">About</a>
+                    <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="gallery.html">Gallery</a>
+                    <a class="font-headline tracking-widest uppercase text-xs text-secondary border-b border-secondary/40 pb-0.5 hover:text-secondary transition-colors duration-500" href="contact.html">Contact</a>
+                </div>
+                <a href="reservations.html" class="bg-secondary text-on-secondary px-6 py-2.5 text-[10px] uppercase tracking-[0.2em] font-bold transition-all duration-500 hover:bg-secondary/90">Book a Table</a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content">
+
+        <!-- Section 1: Page Header -->
+        <section class="pt-40 pb-8 bg-background text-center">
+            <div class="max-w-screen-2xl mx-auto px-6 md:px-12">
+                <h1 class="font-headline text-5xl md:text-7xl font-light text-on-surface reveal">Find Us</h1>
+                <p class="font-headline italic text-primary mt-4 text-lg reveal" style="transition-delay:0.1s">We'd love to hear from you.</p>
+            </div>
+        </section>
+
+        <!-- Section 2: Map + Details -->
+        <section class="py-16 px-6 md:px-12 bg-background">
+            <div class="max-w-screen-2xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-16 items-start">
+
+                <!-- Map -->
+                <div class="lg:col-span-3 reveal">
+                    <iframe
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=-73.9892%2C40.7630%2C-73.9792%2C40.7680&amp;layer=mapnik&amp;marker=40.7655%2C-73.9842"
+                        style="border:0"
+                        class="w-full h-[400px] lg:h-[500px] grayscale opacity-70"
+                        loading="lazy"
+                        title="Aurelia Restaurant Location"
+                    ></iframe>
+                </div>
+
+                <!-- Contact Details -->
+                <div class="lg:col-span-2 space-y-10 reveal" style="transition-delay:0.15s">
+
+                    <div>
+                        <p class="font-label text-xs uppercase tracking-widest text-secondary font-bold mb-1">Address</p>
+                        <p class="font-body text-sm text-primary font-light leading-relaxed">123 West 57th Street<br>New York, NY 10019</p>
+                    </div>
+
+                    <div>
+                        <p class="font-label text-xs uppercase tracking-widest text-secondary font-bold mb-1">Telephone</p>
+                        <a href="tel:+12125551234" class="font-body text-sm text-primary font-light leading-relaxed hover:text-secondary transition-colors">+1 (212) 555-1234</a>
+                    </div>
+
+                    <div>
+                        <p class="font-label text-xs uppercase tracking-widest text-secondary font-bold mb-1">Email</p>
+                        <a href="mailto:hello@aureliarestaurant.com" class="font-body text-sm text-primary font-light leading-relaxed hover:text-secondary transition-colors">hello@aureliarestaurant.com</a>
+                    </div>
+
+                    <div>
+                        <p class="font-label text-xs uppercase tracking-widest text-secondary font-bold mb-1">Hours</p>
+                        <div class="font-body text-sm text-primary font-light leading-relaxed space-y-1">
+                            <p>Lunch &mdash; Mon–Sun &nbsp;12:00–15:00</p>
+                            <p>Dinner &mdash; Mon–Thu &nbsp;18:00–22:00</p>
+                            <p class="pl-[4.1rem]">Fri–Sat &nbsp;18:00–23:00</p>
+                            <p class="pl-[4.1rem]">Sun &nbsp;17:30–21:30</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="font-label text-xs uppercase tracking-widest text-secondary font-bold mb-1">Getting Here</p>
+                        <div class="font-body text-sm text-primary font-light leading-relaxed space-y-1.5">
+                            <p>By Subway: 57th St–7th Ave (N/Q/R/W), 3-min walk.</p>
+                            <p>By Car: Valet available on request.</p>
+                            <p>By Taxi/Rideshare: Drop-off on 57th between 6th and 7th.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Contact Form -->
+        <section class="py-24 px-6 md:px-12 bg-surface-container-low">
+            <div class="max-w-2xl mx-auto">
+                <h2 class="font-headline text-3xl font-light text-on-surface mb-2 reveal">Send a Message</h2>
+                <p class="font-body text-sm text-primary font-light mb-12 reveal" style="transition-delay:0.1s">General enquiries, feedback, press, or careers — we read every message.</p>
+
+                <form id="contact-form" class="space-y-8 reveal" style="transition-delay:0.15s" novalidate>
+
+                    <!-- Name + Email Row -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <label for="contact-name" class="font-label text-xs uppercase tracking-widest text-secondary font-bold block mb-2">Name</label>
+                            <input
+                                id="contact-name"
+                                type="text"
+                                name="name"
+                                required
+                                placeholder="Your full name"
+                                class="border-b border-outline-variant/40 bg-transparent py-3 focus:outline-none focus:border-secondary transition-colors w-full font-body text-sm text-on-surface placeholder:text-primary/40"
+                            />
+                        </div>
+                        <div>
+                            <label for="contact-email" class="font-label text-xs uppercase tracking-widest text-secondary font-bold block mb-2">Email</label>
+                            <input
+                                id="contact-email"
+                                type="email"
+                                name="email"
+                                required
+                                placeholder="your@email.com"
+                                class="border-b border-outline-variant/40 bg-transparent py-3 focus:outline-none focus:border-secondary transition-colors w-full font-body text-sm text-on-surface placeholder:text-primary/40"
+                            />
+                        </div>
+                    </div>
+
+                    <!-- Subject -->
+                    <div>
+                        <label for="contact-subject" class="font-label text-xs uppercase tracking-widest text-secondary font-bold block mb-2">Subject</label>
+                        <select
+                            id="contact-subject"
+                            name="subject"
+                            class="border-b border-outline-variant/40 bg-transparent py-3 focus:outline-none focus:border-secondary transition-colors w-full font-body text-sm text-on-surface appearance-none cursor-pointer"
+                        >
+                            <option value="general">General Enquiry</option>
+                            <option value="feedback">Feedback</option>
+                            <option value="press">Press &amp; Media</option>
+                            <option value="careers">Careers</option>
+                            <option value="private-dining">Private Dining</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- Message -->
+                    <div>
+                        <label for="contact-message" class="font-label text-xs uppercase tracking-widest text-secondary font-bold block mb-2">Message</label>
+                        <textarea
+                            id="contact-message"
+                            name="message"
+                            rows="5"
+                            required
+                            placeholder="Your message…"
+                            class="border-b border-outline-variant/40 bg-transparent py-3 focus:outline-none focus:border-secondary transition-colors w-full font-body text-sm text-on-surface placeholder:text-primary/40 resize-none"
+                        ></textarea>
+                    </div>
+
+                    <!-- Submit -->
+                    <button
+                        type="submit"
+                        class="w-full bg-secondary text-on-secondary py-4 text-xs uppercase tracking-[0.3em] font-bold hover:bg-secondary/90 transition-all duration-500"
+                    >
+                        Send Message
+                    </button>
+
+                </form>
+
+                <!-- Success State -->
+                <div id="contact-success" class="hidden text-center py-16">
+                    <p class="font-headline italic text-2xl text-secondary">Thank you — we'll respond within one business day.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section 4: Social -->
+        <section class="py-20 bg-background text-center px-6 md:px-12">
+            <div class="max-w-screen-2xl mx-auto">
+                <h3 class="font-headline text-2xl font-light text-on-surface mb-8 reveal">Follow the Story</h3>
+                <div class="flex flex-wrap justify-center gap-4 reveal" style="transition-delay:0.1s">
+                    <a
+                        href="#"
+                        class="border border-outline-variant/40 px-8 py-4 text-xs uppercase tracking-widest font-bold text-on-surface hover:bg-secondary hover:text-white hover:border-secondary transition-all duration-500 inline-flex items-center gap-3"
+                        aria-label="Follow Aurelia on Instagram"
+                    >
+                        <span class="material-symbols-outlined text-base leading-none">photo_camera</span>
+                        Instagram
+                    </a>
+                    <a
+                        href="#"
+                        class="border border-outline-variant/40 px-8 py-4 text-xs uppercase tracking-widest font-bold text-on-surface hover:bg-secondary hover:text-white hover:border-secondary transition-all duration-500 inline-flex items-center gap-3"
+                        aria-label="Follow Aurelia on Facebook"
+                    >
+                        <span class="material-symbols-outlined text-base leading-none">public</span>
+                        Facebook
+                    </a>
+                    <a
+                        href="#"
+                        class="border border-outline-variant/40 px-8 py-4 text-xs uppercase tracking-widest font-bold text-on-surface hover:bg-secondary hover:text-white hover:border-secondary transition-all duration-500 inline-flex items-center gap-3"
+                        aria-label="Follow Aurelia on TikTok"
+                    >
+                        <span class="material-symbols-outlined text-base leading-none">play_circle</span>
+                        TikTok
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface-container-low w-full relative border-t border-outline-variant/10 pb-24 lg:pb-0">
+        <div class="w-full px-6 md:px-12 py-20 grid grid-cols-1 md:grid-cols-4 gap-12 max-w-screen-2xl mx-auto">
+            <div class="space-y-6">
+                <a class="text-2xl font-headline font-light text-on-surface" href="index.html">Aurelia</a>
+                <p class="font-body font-light tracking-wide text-sm text-primary max-w-xs">South Asian-Continental fusion. A dialogue between two culinary worlds, served in an atmosphere of understated luxury.</p>
+            </div>
+            <div class="space-y-6">
+                <h4 class="font-label text-xs font-bold uppercase tracking-widest text-on-surface">Explore</h4>
+                <div class="flex flex-col gap-4">
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors" href="menu.html">Menu</a>
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors" href="about.html">About</a>
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors" href="private-dining.html">Private Dining</a>
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors" href="gallery.html">Gallery</a>
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors" href="gift-cards.html">Gift Cards</a>
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors" href="press.html">Press</a>
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors" href="contact.html">Contact</a>
+                </div>
+            </div>
+            <div class="md:col-span-2 space-y-6">
+                <h4 class="font-label text-xs font-bold uppercase tracking-widest text-on-surface">The Journal</h4>
+                <p class="font-body font-light tracking-wide text-sm text-primary">Seasonal menus, chef's notes, and invitations to the table. Once a month.</p>
+                <form class="flex border-b border-outline-variant/40 pb-2" onsubmit="event.preventDefault(); this.querySelector('input').value=''; alert('Thank you for subscribing.');">
+                    <input class="bg-transparent border-none focus:ring-0 w-full font-body font-light text-sm text-on-surface placeholder:text-primary/50" placeholder="Your email address" type="email" required/>
+                    <button type="submit" class="text-secondary font-label text-xs uppercase tracking-widest font-bold hover:text-on-secondary-container transition-colors">Join</button>
+                </form>
+            </div>
+        </div>
+        <div class="max-w-screen-2xl mx-auto px-6 md:px-12 pb-12 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="font-body font-light text-xs text-primary opacity-60">&copy; 2026 Aurelia Restaurant. All Rights Reserved.</p>
+            <div class="flex flex-wrap justify-center gap-6 font-body font-light text-xs text-primary/60">
+                <a class="hover:text-secondary transition-colors" href="privacy.html">Privacy</a>
+                <a class="hover:text-secondary transition-colors" href="terms.html">Terms</a>
+                <a class="hover:text-secondary transition-colors" href="allergens.html">Allergens</a>
+                <a class="hover:text-secondary transition-colors" href="cookies.html">Cookies</a>
+                <a class="hover:text-secondary transition-colors" href="accessibility.html">Accessibility</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Bottom Nav -->
+    <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-6 pb-safe pt-3 lg:hidden bg-background/90 backdrop-blur-xl shadow-[0_-4px_20px_rgba(28,28,25,0.04)] border-t border-outline-variant/20">
+        <a class="flex flex-col items-center justify-center text-primary" href="menu.html">
+            <span class="material-symbols-outlined">restaurant_menu</span>
+            <span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Menu</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-primary" href="reservations.html">
+            <span class="material-symbols-outlined">calendar_today</span>
+            <span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Reserve</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-primary" href="gallery.html">
+            <span class="material-symbols-outlined">collections</span>
+            <span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Gallery</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-secondary scale-110" href="contact.html" aria-current="page">
+            <span class="material-symbols-outlined">location_on</span>
+            <span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Contact</span>
+        </a>
+    </nav>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Scroll reveal
+        const revealEls = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        revealEls.forEach(el => observer.observe(el));
+
+        // Contact form
+        const cForm = document.getElementById('contact-form');
+        if (cForm) {
+            cForm.addEventListener('submit', e => {
+                e.preventDefault();
+                cForm.style.display = 'none';
+                document.getElementById('contact-success').style.display = 'block';
+            });
+        }
+    </script>
+
+</body>
+</html>

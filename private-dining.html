@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html class="light scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Private Dining | Aurelia</title>
+    <meta name="description" content="Host your gathering at Aurelia — intimate private dining rooms for 8 to 40 guests, with bespoke menus crafted to your occasion."/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-surface": "#e8e4dc",
+                        "secondary": "#c9a84c",
+                        "on-secondary": "#1a1400",
+                        "on-secondary-container": "#c9a84c",
+                        "secondary-container": "#3a2c00",
+                        "outline": "#504935",
+                        "outline-variant": "#2c2920",
+                        "surface": "#111110",
+                        "surface-container": "#191917",
+                        "surface-container-low": "#151513",
+                        "surface-container-high": "#1f1f1c",
+                        "surface-container-highest": "#262623",
+                        "on-background": "#e8e4dc",
+                        "inverse-surface": "#e8e4dc",
+                        "primary": "#908878",
+                        "background": "#0d0d0b",
+                    },
+                    fontFamily: { "headline": ["Noto Serif", "serif"], "body": ["Manrope", "sans-serif"], "label": ["Manrope", "sans-serif"] },
+                    borderRadius: { "DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s cubic-bezier(0.25,0.1,0.25,1), transform 0.8s cubic-bezier(0.25,0.1,0.25,1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+        body::after { content: ''; position: fixed; inset: 0; z-index: 9998; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E"); opacity: 0.025; mix-blend-mode: overlay; }
+        input, select, textarea { color-scheme: dark; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-secondary/20 selection:text-secondary">
+
+    <!-- Skip to Content -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-secondary focus:text-white focus:px-4 focus:py-2 focus:text-xs focus:tracking-widest focus:uppercase">Skip to Content</a>
+
+    <!-- Navigation -->
+    <nav id="site-header" class="fixed top-0 w-full z-50 bg-[#0d0d0b]/90 backdrop-blur-md transition-all duration-500">
+        <div class="flex justify-between items-center px-6 md:px-12 py-6 w-full max-w-screen-2xl mx-auto">
+            <div class="hidden lg:flex gap-8 items-center">
+                <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="menu.html">Menu</a>
+                <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="reservations.html">Reservations</a>
+                <a class="font-headline tracking-widest uppercase text-xs text-secondary border-b border-secondary/40 pb-0.5" href="private-dining.html">Private Dining</a>
+            </div>
+            <a class="text-3xl font-light font-headline tracking-tight text-on-surface" href="index.html">Aurelia</a>
+            <div class="flex gap-8 items-center">
+                <div class="hidden lg:flex gap-8 items-center">
+                    <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="about.html">About</a>
+                    <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="gallery.html">Gallery</a>
+                    <a class="font-headline tracking-widest uppercase text-xs text-on-surface hover:text-secondary transition-colors duration-500" href="contact.html">Contact</a>
+                </div>
+                <a href="reservations.html" class="bg-secondary text-on-secondary px-6 py-2.5 text-[10px] uppercase tracking-[0.2em] font-bold transition-all duration-500 hover:bg-secondary/90">Book a Table</a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content">
+
+        <!-- Section 1: Hero -->
+        <section class="relative h-[70vh] overflow-hidden flex items-end">
+            <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNfrb3T8MCdBojF96mpU8tgzYiWV6pcMlOd8L3s17qHZudRILSwlYAR16KTys-nlCq6jBQ4Lpf5-PBAoESWWiSVy38mmgcbP7lK9loUXqOv-2-VbuQPFgICoR-OTgaN1QtQdTCwpYJA47X8ld7Kd_732wGecLucTL6dZ7FhCMlnbR2G2DCxXwKLxYVITEBTVzX2YL1aSXmlF7aOc3RzdK5ZmGrNiCeyH7yFthEeYmqZGgdQXhySoElH79TMX0P2rUaJbYpIQ7GB20"
+                alt="Private dining room with long candlelit table"
+                class="absolute inset-0 w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-background"></div>
+            <div class="relative z-10 pb-24 px-6 md:px-12 w-full max-w-screen-2xl mx-auto reveal">
+                <p class="font-label text-xs uppercase tracking-[0.25em] text-secondary mb-4">For Gatherings That Matter</p>
+                <h1 class="font-headline text-5xl md:text-7xl font-light text-white mb-6">Private Dining &amp; Events</h1>
+                <p class="font-body text-base font-light text-white/80 mb-10 max-w-lg">Intimate rooms for 8 to 40 guests. Bespoke menus. Dedicated service.</p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#inquiry-form" class="bg-secondary text-on-secondary px-8 py-3.5 text-[10px] uppercase tracking-[0.25em] font-bold transition-all duration-500 hover:bg-secondary/90">Plan Your Event</a>
+                    <a href="#spaces" class="border border-white text-white px-8 py-3.5 text-[10px] uppercase tracking-[0.25em] font-bold transition-all duration-500 hover:bg-white/10">View Spaces</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: The Spaces -->
+        <section id="spaces" class="py-32 px-6 md:px-12 bg-background">
+            <div class="max-w-screen-2xl mx-auto">
+
+                <!-- Heading -->
+                <div class="text-center mb-24 reveal">
+                    <p class="font-label text-xs uppercase tracking-[0.25em] text-secondary mb-4">Our Spaces</p>
+                    <h2 class="font-headline text-4xl font-light text-on-surface">Three rooms. Infinite possibilities.</h2>
+                </div>
+
+                <!-- Room 1: The Garden Room (image left, text right) -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-28 reveal">
+                    <div class="overflow-hidden">
+                        <img
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdjdmR4ia-qdPzOGPn7j2EFtvSZB5cF1qqLn-1mYUHL9X6KN2MReLC0-JQBPcytG5CQ_mSCkSOIqLYYbUzGMHzQ4Mtb3_HKFBup4rjZvP_A7m_kBA7OsdFDy6UkjGdjzFvwiFTlI1Crs-7J7bM6psu3DQg6RvZ-v1tEAD73cBcx64LalhwaWhLNmBbe_t0hkDfRLmtbuLGLMeW5JOYdxT0UlbIINOWecXb8Dnxhs14n7lLkQaeIx9zam4dVoqmPDHAGUCF5IeNysE"
+                            alt="The Garden Room private dining"
+                            class="w-full aspect-[4/3] object-cover"
+                        />
+                    </div>
+                    <div class="space-y-6">
+                        <p class="font-label text-xs uppercase tracking-[0.25em] text-secondary">The Garden Room</p>
+                        <p class="font-headline text-sm font-light text-primary tracking-widest uppercase">8 – 16 Guests</p>
+                        <p class="font-body text-base font-light text-primary leading-relaxed">Our most intimate setting. Floor-to-ceiling glass panels open onto a private courtyard garden, creating a seamless indoor-outdoor experience. Natural light by day; candlelit warmth by evening. Ideal for celebratory dinners and small corporate gatherings.</p>
+                        <ul class="space-y-2">
+                            <li class="flex items-center gap-3 font-body text-sm font-light text-primary">
+                                <span class="material-symbols-outlined text-secondary text-base">check_circle</span>
+                                AV available
+                            </li>
+                            <li class="flex items-center gap-3 font-body text-sm font-light text-primary">
+                                <span class="material-symbols-outlined text-secondary text-base">check_circle</span>
+                                Dedicated server
+                            </li>
+                            <li class="flex items-center gap-3 font-body text-sm font-light text-primary">
+                                <span class="material-symbols-outlined text-secondary text-base">check_circle</span>
+                                Custom menu
+                            </li>
+                        </ul>
+                        <a href="#inquiry-form" class="inline-block border border-secondary text-secondary px-8 py-3 text-[10px] uppercase tracking-[0.25em] font-bold transition-all duration-500 hover:bg-secondary hover:text-on-secondary mt-2">Enquire About This Room</a>
+                    </div>
+                </div>
+
+                <!-- Room 2: The Ember Room (image right, text left) -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-28 reveal">
+                    <div class="space-y-6 lg:order-1 order-2">
+                        <p class="font-label text-xs uppercase tracking-[0.25em] text-secondary">The Ember Room</p>
+                        <p class="font-headline text-sm font-light text-primary tracking-widest uppercase">16 – 28 Guests</p>
+                        <p class="font-body text-base font-light text-primary leading-relaxed">Named for the custom open-fire grill at its centre, the Ember Room offers a theatrical dining experience built around live-fire cookery. Exposed brick, aged oak tables, and copper fixtures create a dramatic yet intimate atmosphere.</p>
+                        <ul class="space-y-2">
+                            <li class="flex items-center gap-3 font-body text-sm font-light text-primary">
+                                <span class="material-symbols-outlined text-secondary text-base">check_circle</span>
+                                Live-fire cooking available
+                            </li>
+                            <li class="flex items-center gap-3 font-body text-sm font-light text-primary">
+                                <span class="material-symbols-outlined text-secondary text-base">check_circle</span>
+                                AV
+                            </li>
+                            <li class="flex items-center gap-3 font-body text-sm font-light text-primary">
+                                <span class="material-symbols-outlined text-secondary text-base">check_circle</span>
+                                Private bar
+                            </li>
+                        </ul>
+                        <a href="#inquiry-form" class="inline-block border border-secondary text-secondary px-8 py-3 text-[10px] uppercase tracking-[0.25em] font-bold transition-all duration-500 hover:bg-secondary hover:text-on-secondary mt-2">Enquire About This Room</a>
+                    </div>
+                    <div class="overflow-hidden lg:order-2 order-1">
+                        <img
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNfrb3T8MCdBojF96mpU8tgzYiWV6pcMlOd8L3s17qHZudRILSwlYAR16KTys-nlCq6jBQ4Lpf5-PBAoESWWiSVy38mmgcbP7lK9loUXqOv-2-VbuQPFgICoR-OTgaN1QtQdTCwpYJA47X8ld7Kd_732wGecLucTL6dZ7FhCMlnbR2G2DCxXwKLxYVITEBTVzX2YL1aSXmlF7aOc3RzdK5ZmGrNiCeyH7yFthEeYmqZGgdQXhySoElH79TMX0P2rUaJbYpIQ7GB20"
+                            alt="The Ember Room private dining"
+                            class="w-full aspect-[4/3] object-cover"
+                        />
+                    </div>
+                </div>
+
+                <!-- Room 3: The Aurelia Suite (image left, text right) -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center reveal">
+                    <div class="overflow-hidden">
+                        <img
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNfrb3T8MCdBojF96mpU8tgzYiWV6pcMlOd8L3s17qHZudRILSwlYAR16KTys-nlCq6jBQ4Lpf5-PBAoESWWiSVy38mmgcbP7lK9loUXqOv-2-VbuQPFgICoR-OTgaN1QtQdTCwpYJA47X8ld7Kd_732wGecLucTL6dZ7FhCMlnbR2G2DCxXwKLxYVITEBTVzX2YL1aSXmlF7aOc3RzdK5ZmGrNiCeyH7yFthEeYmqZGgdQXhySoElH79TMX0P2rUaJbYpIQ7GB20"
+                            alt="The Aurelia Suite — full venue private dining"
+                            class="w-full aspect-[4/3] object-cover"
+                        />
+                    </div>
+                    <div class="space-y-6">
+                        <p class="font-label text-xs uppercase tracking-[0.25em] text-secondary">The Aurelia Suite</p>
+                        <p class="font-headline text-sm font-light text-primary tracking-widest uppercase">28 – 40 Guests</p>
+                        <p class="font-body text-base font-light text-primary leading-relaxed">Our largest private space, The Aurelia Suite spans the full east wing of the restaurant. With its own entrance, bar, and lounge area, it offers complete seclusion for weddings, milestone events, and large corporate dinners. Fully modular — configure for banquet, boardroom, or reception.</p>
+                        <ul class="space-y-2">
+                            <li class="flex items-center gap-3 font-body text-sm font-light text-primary">
+                                <span class="material-symbols-outlined text-secondary text-base">check_circle</span>
+                                Private entrance
+                            </li>
+                            <li class="flex items-center gap-3 font-body text-sm font-light text-primary">
+                                <span class="material-symbols-outlined text-secondary text-base">check_circle</span>
+                                Full AV suite
+                            </li>
+                            <li class="flex items-center gap-3 font-body text-sm font-light text-primary">
+                                <span class="material-symbols-outlined text-secondary text-base">check_circle</span>
+                                Dedicated bar
+                            </li>
+                            <li class="flex items-center gap-3 font-body text-sm font-light text-primary">
+                                <span class="material-symbols-outlined text-secondary text-base">check_circle</span>
+                                Modular layout
+                            </li>
+                        </ul>
+                        <a href="#inquiry-form" class="inline-block border border-secondary text-secondary px-8 py-3 text-[10px] uppercase tracking-[0.25em] font-bold transition-all duration-500 hover:bg-secondary hover:text-on-secondary mt-2">Enquire About This Room</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section 3: What We Offer -->
+        <section class="py-24 bg-surface-container-low px-6 md:px-12">
+            <div class="max-w-screen-2xl mx-auto">
+                <h2 class="font-headline text-4xl font-light text-on-surface text-center mb-16 reveal">Every Detail Considered</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-x-16 gap-y-12">
+                    <div class="reveal">
+                        <span class="material-symbols-outlined text-secondary text-3xl mb-3 block">restaurant_menu</span>
+                        <h3 class="font-headline text-lg text-on-surface mb-2">Bespoke Menus</h3>
+                        <p class="font-body text-sm text-primary font-light leading-relaxed">Created with your occasion in mind, from dietary requirements to thematic pairings.</p>
+                    </div>
+                    <div class="reveal">
+                        <span class="material-symbols-outlined text-secondary text-3xl mb-3 block">wine_bar</span>
+                        <h3 class="font-headline text-lg text-on-surface mb-2">Sommelier Service</h3>
+                        <p class="font-body text-sm text-primary font-light leading-relaxed">Our sommelier will guide you through wine pairings and cellar selections for every course.</p>
+                    </div>
+                    <div class="reveal">
+                        <span class="material-symbols-outlined text-secondary text-3xl mb-3 block">tv</span>
+                        <h3 class="font-headline text-lg text-on-surface mb-2">AV &amp; Technology</h3>
+                        <p class="font-body text-sm text-primary font-light leading-relaxed">State-of-the-art audio-visual equipment for presentations, screenings, and speeches.</p>
+                    </div>
+                    <div class="reveal">
+                        <span class="material-symbols-outlined text-secondary text-3xl mb-3 block">local_florist</span>
+                        <h3 class="font-headline text-lg text-on-surface mb-2">Floral Arrangements</h3>
+                        <p class="font-body text-sm text-primary font-light leading-relaxed">We work with our preferred florists to create centrepieces that complement the occasion.</p>
+                    </div>
+                    <div class="reveal">
+                        <span class="material-symbols-outlined text-secondary text-3xl mb-3 block">group</span>
+                        <h3 class="font-headline text-lg text-on-surface mb-2">Dedicated Team</h3>
+                        <p class="font-body text-sm text-primary font-light leading-relaxed">A private server and events coordinator assigned to your booking from planning to close.</p>
+                    </div>
+                    <div class="reveal">
+                        <span class="material-symbols-outlined text-secondary text-3xl mb-3 block">checkroom</span>
+                        <h3 class="font-headline text-lg text-on-surface mb-2">Custom Dietary Menus</h3>
+                        <p class="font-body text-sm text-primary font-light leading-relaxed">Comprehensive accommodation for all dietary requirements, including allergen-specific menus.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Corporate Events -->
+        <section class="py-24 px-6 md:px-12 bg-background">
+            <div class="max-w-screen-2xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div class="reveal">
+                    <p class="font-label text-xs uppercase tracking-[0.25em] text-secondary mb-4">Corporate Entertaining</p>
+                    <h2 class="font-headline text-4xl md:text-5xl font-light text-on-surface mb-8">Where Business Becomes Memorable</h2>
+                    <p class="font-body text-lg font-light text-primary mb-8 leading-relaxed">From intimate board dinners to full-venue product launches, Aurelia provides the setting, the service, and the cuisine to make every corporate event exceptional. We offer:</p>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-start gap-3 font-body text-sm font-light text-primary">
+                            <span class="material-symbols-outlined text-secondary text-base mt-0.5 shrink-0">check_circle</span>
+                            Company-branded menus and place cards
+                        </li>
+                        <li class="flex items-start gap-3 font-body text-sm font-light text-primary">
+                            <span class="material-symbols-outlined text-secondary text-base mt-0.5 shrink-0">check_circle</span>
+                            AV and presentation setup
+                        </li>
+                        <li class="flex items-start gap-3 font-body text-sm font-light text-primary">
+                            <span class="material-symbols-outlined text-secondary text-base mt-0.5 shrink-0">check_circle</span>
+                            Consolidated billing and VAT receipts
+                        </li>
+                        <li class="flex items-start gap-3 font-body text-sm font-light text-primary">
+                            <span class="material-symbols-outlined text-secondary text-base mt-0.5 shrink-0">check_circle</span>
+                            Pre-event tasting sessions available
+                        </li>
+                        <li class="flex items-start gap-3 font-body text-sm font-light text-primary">
+                            <span class="material-symbols-outlined text-secondary text-base mt-0.5 shrink-0">check_circle</span>
+                            Capacity for 8 – 40 guests across three rooms
+                        </li>
+                    </ul>
+                    <a href="#inquiry-form" class="inline-block bg-secondary text-on-secondary px-10 py-4 text-[10px] uppercase tracking-[0.25em] font-bold transition-all duration-500 hover:bg-secondary/90">Enquire Now</a>
+                </div>
+                <div class="reveal">
+                    <img
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYZYjFfmjhAcjwztzpoPKUPl16m3cqLr4aQjPuAu1cXUfTIcirxf4DtX0RgDPAOB99Ov4_EJYwT4DZl7NorYMnaxdXOlmOL3nlq4MQmKOXPcsc44gjLBhVGcay23hOAPm_3tGEslUUocGCRBDdqLLv9KchCj-4ChpP9lJQCAFp2IHZ6rcM9p9T99_3l4ftR5cgzy-o7B0yJKBKdGoSNAAwTumwk_5dzQIiSZQC9NN53JP3-43dN_OxNkmX2bBseN6edu4XIhFNo"
+                        alt="Corporate private dining at Aurelia"
+                        class="w-full aspect-[4/3] object-cover"
+                    />
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Inquiry Form -->
+        <section id="inquiry-form" class="py-32 px-6 md:px-12 bg-surface-container-low">
+            <div class="max-w-2xl mx-auto">
+                <div class="text-center mb-16 reveal">
+                    <p class="font-label text-xs uppercase tracking-[0.25em] text-secondary mb-4">Private Dining &amp; Events</p>
+                    <h2 class="font-headline text-4xl font-light text-on-surface mb-4">Plan Your Event</h2>
+                    <p class="font-body text-sm font-light text-primary">Our events team will respond within 24 hours.</p>
+                </div>
+
+                <form id="inquiry-form-el" class="space-y-8 reveal" novalidate>
+
+                    <!-- Row 1 -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <label for="full-name" class="font-label text-[10px] uppercase tracking-[0.2em] text-primary block mb-2">Full Name <span class="text-secondary">*</span></label>
+                            <input
+                                id="full-name"
+                                type="text"
+                                required
+                                class="border-b border-outline-variant/40 bg-transparent py-3 focus:outline-none focus:border-secondary transition-colors w-full font-body text-sm text-on-surface placeholder:text-primary/40"
+                                placeholder="Your full name"
+                            />
+                        </div>
+                        <div>
+                            <label for="email" class="font-label text-[10px] uppercase tracking-[0.2em] text-primary block mb-2">Email Address <span class="text-secondary">*</span></label>
+                            <input
+                                id="email"
+                                type="email"
+                                required
+                                class="border-b border-outline-variant/40 bg-transparent py-3 focus:outline-none focus:border-secondary transition-colors w-full font-body text-sm text-on-surface placeholder:text-primary/40"
+                                placeholder="your@email.com"
+                            />
+                        </div>
+                    </div>
+
+                    <!-- Row 2 -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <label for="phone" class="font-label text-[10px] uppercase tracking-[0.2em] text-primary block mb-2">Phone Number</label>
+                            <input
+                                id="phone"
+                                type="tel"
+                                class="border-b border-outline-variant/40 bg-transparent py-3 focus:outline-none focus:border-secondary transition-colors w-full font-body text-sm text-on-surface placeholder:text-primary/40"
+                                placeholder="+1 (000) 000-0000"
+                            />
+                        </div>
+                        <div>
+                            <label for="occasion" class="font-label text-[10px] uppercase tracking-[0.2em] text-primary block mb-2">Occasion</label>
+                            <select
+                                id="occasion"
+                                class="border-b border-outline-variant/40 bg-transparent py-3 focus:outline-none focus:border-secondary transition-colors w-full font-body text-sm text-on-surface appearance-none cursor-pointer"
+                            >
+                                <option value="" disabled selected>Select an occasion</option>
+                                <option value="corporate">Corporate</option>
+                                <option value="birthday-anniversary">Birthday / Anniversary</option>
+                                <option value="wedding">Wedding</option>
+                                <option value="holiday">Holiday Celebration</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Row 3 -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <label for="preferred-date" class="font-label text-[10px] uppercase tracking-[0.2em] text-primary block mb-2">Preferred Date</label>
+                            <input
+                                id="preferred-date"
+                                type="date"
+                                class="border-b border-outline-variant/40 bg-transparent py-3 focus:outline-none focus:border-secondary transition-colors w-full font-body text-sm text-on-surface"
+                            />
+                        </div>
+                        <div>
+                            <label for="guest-count" class="font-label text-[10px] uppercase tracking-[0.2em] text-primary block mb-2">Estimated Guest Count</label>
+                            <input
+                                id="guest-count"
+                                type="number"
+                                min="8"
+                                max="40"
+                                class="border-b border-outline-variant/40 bg-transparent py-3 focus:outline-none focus:border-secondary transition-colors w-full font-body text-sm text-on-surface placeholder:text-primary/40"
+                                placeholder="8 – 40"
+                            />
+                        </div>
+                    </div>
+
+                    <!-- Row 4 -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <label for="budget" class="font-label text-[10px] uppercase tracking-[0.2em] text-primary block mb-2">Budget Range</label>
+                            <select
+                                id="budget"
+                                class="border-b border-outline-variant/40 bg-transparent py-3 focus:outline-none focus:border-secondary transition-colors w-full font-body text-sm text-on-surface appearance-none cursor-pointer"
+                            >
+                                <option value="" disabled selected>Select a budget range</option>
+                                <option value="us-2000-5000" class="locale-budget-us">US$2,000 – $5,000</option>
+                                <option value="us-5000-10000" class="locale-budget-us">US$5,000 – $10,000</option>
+                                <option value="us-10000-plus" class="locale-budget-us">US$10,000+</option>
+                                <option value="uk-1500-3500" class="locale-budget-uk hidden">£1,500 – £3,500</option>
+                                <option value="uk-3500-7500" class="locale-budget-uk hidden">£3,500 – £7,500</option>
+                                <option value="uk-7500-plus" class="locale-budget-uk hidden">£7,500+</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="referral" class="font-label text-[10px] uppercase tracking-[0.2em] text-primary block mb-2">How did you hear about us?</label>
+                            <select
+                                id="referral"
+                                class="border-b border-outline-variant/40 bg-transparent py-3 focus:outline-none focus:border-secondary transition-colors w-full font-body text-sm text-on-surface appearance-none cursor-pointer"
+                            >
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="google">Google</option>
+                                <option value="instagram">Instagram</option>
+                                <option value="word-of-mouth">Word of Mouth</option>
+                                <option value="press-media">Press / Media</option>
+                                <option value="returning-guest">Returning Guest</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Additional Details -->
+                    <div>
+                        <label for="additional-details" class="font-label text-[10px] uppercase tracking-[0.2em] text-primary block mb-2">Additional Details</label>
+                        <textarea
+                            id="additional-details"
+                            rows="4"
+                            class="border-b border-outline-variant/40 bg-transparent py-3 focus:outline-none focus:border-secondary transition-colors w-full font-body text-sm text-on-surface placeholder:text-primary/40 resize-none"
+                            placeholder="Tell us about your event, dietary requirements, special requests…"
+                        ></textarea>
+                    </div>
+
+                    <!-- Submit -->
+                    <button
+                        type="submit"
+                        class="w-full bg-secondary text-on-secondary py-5 text-xs uppercase tracking-[0.3em] font-bold transition-all duration-500 hover:bg-secondary/90"
+                    >
+                        Submit Enquiry
+                    </button>
+
+                </form>
+
+                <!-- Success Message -->
+                <div id="inquiry-success" class="hidden text-center py-12">
+                    <p class="font-headline italic text-2xl text-secondary">Thank you. Our events team will be in touch within 24 hours.</p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface-container-low w-full relative border-t border-outline-variant/10">
+        <div class="w-full px-6 md:px-12 py-20 grid grid-cols-1 md:grid-cols-4 gap-12 max-w-screen-2xl mx-auto">
+            <div class="space-y-6">
+                <a class="text-2xl font-headline font-light text-on-surface" href="index.html">Aurelia</a>
+                <p class="font-body font-light tracking-wide text-sm text-primary max-w-xs">South Asian-Continental fusion. A dialogue between two culinary worlds, served in an atmosphere of understated luxury.</p>
+            </div>
+            <div class="space-y-6">
+                <h4 class="font-label text-xs font-bold uppercase tracking-widest text-on-surface">Explore</h4>
+                <div class="flex flex-col gap-4">
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="menu.html">Menu</a>
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="about.html">About</a>
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="private-dining.html">Private Dining</a>
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="gallery.html">Gallery</a>
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="gift-cards.html">Gift Cards</a>
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="press.html">Press</a>
+                    <a class="font-body font-light tracking-wide text-sm text-primary hover:text-secondary transition-colors duration-300" href="contact.html">Contact</a>
+                </div>
+            </div>
+            <div class="md:col-span-2 space-y-6">
+                <h4 class="font-label text-xs font-bold uppercase tracking-widest text-on-surface">The Journal</h4>
+                <p class="font-body font-light tracking-wide text-sm text-primary">Seasonal menus, chef's notes, and invitations to the table. Once a month.</p>
+                <form class="flex border-b border-outline-variant/40 pb-2" onsubmit="event.preventDefault(); this.querySelector('input').value=''; alert('Thank you for subscribing.');">
+                    <input class="bg-transparent border-none focus:ring-0 w-full font-body font-light text-sm text-on-surface placeholder:text-primary/50" placeholder="Your email address" type="email" required aria-label="Email address"/>
+                    <button type="submit" class="text-secondary font-label text-xs uppercase tracking-widest font-bold hover:text-on-secondary-container transition-colors">Join</button>
+                </form>
+                <div class="pt-4">
+                    <span class="font-label text-xs font-bold uppercase tracking-widest text-on-surface block mb-3">Locale</span>
+                    <div class="text-xs tracking-widest text-primary">
+                        <button class="locale-btn hover:text-secondary transition-colors active font-bold" data-locale="us">US</button>
+                        <span class="mx-1">|</span>
+                        <button class="locale-btn hover:text-secondary transition-colors" data-locale="uk">UK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-screen-2xl mx-auto px-6 md:px-12 pb-12 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="font-body font-light tracking-wide text-xs text-primary opacity-60">&copy; 2026 Aurelia Restaurant. All Rights Reserved.</p>
+            <div class="flex flex-wrap justify-center gap-6 font-body font-light text-xs text-primary/60">
+                <a class="hover:text-secondary transition-colors" href="privacy.html">Privacy</a>
+                <a class="hover:text-secondary transition-colors" href="terms.html">Terms</a>
+                <a class="hover:text-secondary transition-colors" href="allergens.html">Allergens</a>
+                <a class="hover:text-secondary transition-colors" href="cookies.html">Cookies</a>
+                <a class="hover:text-secondary transition-colors" href="accessibility.html">Accessibility</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bottom Nav Bar (Mobile) -->
+    <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-6 pb-safe pt-3 lg:hidden bg-background/90 backdrop-blur-xl shadow-[0_-4px_20px_rgba(28,28,25,0.04)] border-t border-outline-variant/20">
+        <a class="flex flex-col items-center justify-center text-primary" href="menu.html">
+            <span class="material-symbols-outlined">restaurant_menu</span>
+            <span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Menu</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-primary" href="reservations.html">
+            <span class="material-symbols-outlined">calendar_today</span>
+            <span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Reserve</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-primary" href="gallery.html">
+            <span class="material-symbols-outlined">collections</span>
+            <span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Gallery</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-primary" href="contact.html">
+            <span class="material-symbols-outlined">location_on</span>
+            <span class="font-label text-[10px] font-bold uppercase tracking-widest mt-1">Contact</span>
+        </a>
+    </nav>
+
+    <script src="js/main.js"></script>
+    <script>
+        const form = document.getElementById('inquiry-form-el');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                form.style.display = 'none';
+                document.getElementById('inquiry-success').style.display = 'block';
+            });
+        }
+    </script>
+</body>
+</html>
